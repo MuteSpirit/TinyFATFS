@@ -110,7 +110,12 @@ static HardwareSerial Serial;
 
 }  // namespace fatfs
 
-#ifndef ARDUINO
+// Desktop convenience: emulate the Arduino runtime, i.e. provide a main()
+// that calls the sketch's setup() and loop(). Define FATFS_NO_MAIN before
+// including fatfs.h if you have your own main() or link this header into a
+// library (the definition is not inline, so it must live in exactly one
+// translation unit anyway).
+#if !defined(ARDUINO) && !defined(FATFS_NO_MAIN)
 
 void setup();
 void loop();
