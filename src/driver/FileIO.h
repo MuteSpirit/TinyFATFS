@@ -39,15 +39,16 @@ class FileIO : public IO {
     delete[] work_buffer;
   }
 
-  FRESULT mount(FatFs& fs, BYTE pdrv = 0) override {
-    if (disk_initialize(pdrv) & STA_NOINIT) return FR_NOT_READY;
+  /// @param ldrv Logical drive index. If FF_MULTI_PARTITION is 0 then it equals to physical drive index.
+  FRESULT mount(FatFs& fs, BYTE ldrv = 0) override {
+    if (disk_initialize(ldrv) & STA_NOINIT) return FR_NOT_READY;
     if (just_created) {
       char drive_path[6];
-      snprintf(drive_path, sizeof(drive_path), "%d:", pdrv);
+      snprintf(drive_path, sizeof(drive_path), "%d:", ldrv);
       if (work_buffer == nullptr) work_buffer = new uint8_t[FF_MAX_SS];
       fs.f_mkfs(drive_path, nullptr, work_buffer, FF_MAX_SS);
     }
-    return IO::mount(fs, pdrv);
+    return IO::mount(fs, ldrv);
   }
 
   DSTATUS disk_initialize(BYTE pdrv) override {
