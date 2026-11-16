@@ -423,8 +423,41 @@
 #define MERGE_2STR(a, b) a ## b
 #define MKCVTBL(hd, cp) MERGE_2STR(hd, cp)
 
+
+#define ARRAY_LEN(arr) (sizeof(arr)/sizeof((arr)[0]))
+
+
 namespace fatfs {
 
+/*-----------------------------------------------------------------------*/
+/* Modify the start LBA of a partition entry in a MBR image		 */
+/*-----------------------------------------------------------------------*/
+
+void modify_mbr(
+        BYTE* mbr,	        /* Pointer to the MBR image (sector 0) */
+        BYTE pt,		/* Partition entry index (0..3) */
+        LBA_t new_volbase	/* New start LBA (little-endian) */
+        )
+{
+    BYTE* pte = mbr + MBR_Table + pt * SZ_PTE + PTE_StLba;
+
+    st_dword(pte, (DWORD)new_volbase);
+}
+
+/*-----------------------------------------------------------------------
+ * Parse the MBR partition table in sector 0 bytes
+ *-----------------------------------------------------------------------*/
+
+ void parse_mbr (
+ 	const BYTE* mbr,	/* Logical drive index */
+ 	struct MbrInfo& info	/* Receives the status and the partition table */
+ )
+ {
+        /* Load the partition table entries */
+ 	for (UINT i = 0; i < ARRAY_LEN(info.part); ++i) {
+            info.part[i] = ld_dword(mbr + MBR_Table + i * SZ_PTE + PTE_StLba);
+ 	}
+}
 
 /*--------------------------------------------------------------------------
 
@@ -490,7 +523,7 @@ static const BYTE DbcTbl[] = MKCVTBL(TBL_DC, FF_CODE_PAGE);
 /* Load/Store multi-byte word in the FAT structure                       */
 /*-----------------------------------------------------------------------*/
 
-static WORD ld_word (const BYTE* ptr)	/*	 Load a 2-byte little-endian word */
+WORD ld_word (const BYTE* ptr)	/*	 Load a 2-byte little-endian word */
 {
 	WORD rv;
 
@@ -499,7 +532,7 @@ static WORD ld_word (const BYTE* ptr)	/*	 Load a 2-byte little-endian word */
 	return rv;
 }
 
-static DWORD ld_dword (const BYTE* ptr)	/* Load a 4-byte little-endian word */
+DWORD ld_dword (const BYTE* ptr)	/* Load a 4-byte little-endian word */
 {
 	DWORD rv;
 
@@ -511,7 +544,7 @@ static DWORD ld_dword (const BYTE* ptr)	/* Load a 4-byte little-endian word */
 }
 
 #if FF_FS_EXFAT
-static QWORD ld_qword (const BYTE* ptr)	/* Load an 8-byte little-endian word */
+QWORD ld_qword (const BYTE* ptr)	/* Load an 8-byte little-endian word */
 {
 	QWORD rv;
 
@@ -528,13 +561,13 @@ static QWORD ld_qword (const BYTE* ptr)	/* Load an 8-byte little-endian word */
 #endif
 
 #if !FF_FS_READONLY
-static void st_word (BYTE* ptr, WORD val)	/* Store a 2-byte word in little-endian */
+void st_word (BYTE* ptr, WORD val)	/* Store a 2-byte word in little-endian */
 {
 	*ptr++ = (BYTE)val; val >>= 8;
 	*ptr++ = (BYTE)val;
 }
 
-static void st_dword (BYTE* ptr, DWORD val)	/* Store a 4-byte word in little-endian */
+void st_dword (BYTE* ptr, DWORD val)	/* Store a 4-byte word in little-endian */
 {
 	*ptr++ = (BYTE)val; val >>= 8;
 	*ptr++ = (BYTE)val; val >>= 8;
@@ -543,7 +576,7 @@ static void st_dword (BYTE* ptr, DWORD val)	/* Store a 4-byte word in little-end
 }
 
 #if FF_FS_EXFAT
-static void st_qword (BYTE* ptr, QWORD val)	/* Store an 8-byte word in little-endian */
+void st_qword (BYTE* ptr, QWORD val)	/* Store an 8-byte word in little-endian */
 {
 	*ptr++ = (BYTE)val; val >>= 8;
 	*ptr++ = (BYTE)val; val >>= 8;

@@ -22,17 +22,43 @@
 #include <cstdlib>
 #include "ffconf.h"  // FatFs configuration options
 #include "ffdef.h"   // common structures and defines
-// Relative to ff/, not this file's own directory root: quote-includes
-// resolve relative to the including file's directory first, so a plain
-// "driver/IO.h" here would look for ff/driver/IO.h (which doesn't
-// exist) before falling back to whatever's on -I. That fallback only
-// works when this library's own src/ root happens to be on the
-// compiler's include path (true for a normal Library Manager install,
-// not necessarily true if someone vendors src/ into another project
-// without adding it to -I) -- see driver/IO.h's matching "../ff/ff.h".
-#include "../driver/IO.h"
 
 namespace fatfs {
+
+/// Result of a MBR scan
+struct MbrInfo {
+  ///< Partition start LBA (0:unused entry). Only primary partitions are supported.
+  LBA_t part[4];
+};
+
+/// @brief Parse MBR table in sector 0 bytes
+/// @param[in] mbr Sector 0 from disk
+/// @param[out] info Parse result
+void parse_mbr(const BYTE* mbr, struct MbrInfo& info);
+
+/// @brief Set new start offset @p new_volbase for partition @p pt
+/// @param mbr Pointer to the MBR bytes (sector 0)
+/// @param pt Partition entry index (0..3)
+/// @param new_volbase New start LBA
+void modify_mbr(BYTE* mbr, BYTE pt, LBA_t new_volbase);
+
+WORD ld_word (const BYTE* ptr);	  /* Load a 2-byte little-endian word */
+DWORD ld_dword (const BYTE* ptr); /* Load a 4-byte little-endian word */
+
+#if FF_FS_EXFAT
+QWORD ld_qword (const BYTE* ptr); /* Load an 8-byte little-endian word */
+#endif
+
+#if !FF_FS_READONLY
+void st_word (BYTE* ptr, WORD val);   /* Store a 2-byte word in little-endian */
+void st_dword (BYTE* ptr, DWORD val); /* Store a 4-byte word in little-endian */
+
+#if FF_FS_EXFAT
+void st_qword (BYTE* ptr, QWORD val); /* Store an 8-byte word in little-endian */
+#endif
+#endif	/* !FF_FS_READONLY */
+
+class IO;
 
 /**
  * @brief API for FatFS See http://elm-chan.org/fsw/ff/00index_e.html
