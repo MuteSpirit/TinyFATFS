@@ -42,6 +42,12 @@ Here is an example of setting up a SD drive in RAM:
 #include "SPI.h"
 #include "fatfs.h"
 
+#ifdef FF_MULTI_PARTITION
+PARTITION VolToPart[] {
+  {0, 0}
+};
+#endif
+
 RamIO<100, 512> drv; // 100 sectors with 512 bytes
 File file;
 

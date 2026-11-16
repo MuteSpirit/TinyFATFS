@@ -16,6 +16,12 @@
 
 using namespace fatfs;
 
+#ifdef FF_MULTI_PARTITION
+PARTITION VolToPart[] {
+  {0, 0}
+};
+#endif
+
 static const char* IMG_PATH = "fatfs_test_fileio.img";
 
 void setup() {

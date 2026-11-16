@@ -19,6 +19,12 @@
 
 using namespace fatfs;
 
+#ifdef FF_MULTI_PARTITION
+PARTITION VolToPart[] {
+  {0, 0}
+};
+#endif
+
 // Minimal in-memory stand-in for the Stream-like type StreamIO<T> expects:
 // begin(), seek(), sectorCount(), eraseSector(from, to), plus the
 // Stream-style readBytes()/write()/flush() used for the actual transfers.

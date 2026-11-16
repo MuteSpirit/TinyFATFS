@@ -16,6 +16,12 @@
 
 using namespace fatfs;
 
+#ifdef FF_MULTI_PARTITION
+PARTITION VolToPart[] {
+  {0, 0}
+};
+#endif
+
 RamIO<64 /*sectors*/, 512 /*bytes each*/> ram;
 TinyUsbMscIO usbMsc;
 

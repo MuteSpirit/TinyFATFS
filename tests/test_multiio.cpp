@@ -16,6 +16,13 @@
 
 using namespace fatfs;
 
+#ifdef FF_MULTI_PARTITION
+PARTITION VolToPart[] {
+  {0, 0},
+  {1, 0},
+};
+#endif
+
 RamIO<200 /*sectors*/, 512 /*bytes each*/> drvA;
 RamIO<200 /*sectors*/, 512 /*bytes each*/> drvB;
 MultiIO multi;

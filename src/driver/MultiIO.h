@@ -26,23 +26,22 @@ class MultiIO : public IO {
 
   /// mount all the added drivers, each on its own logical drive number
   /// matching its index (requires FF_VOLUMES >= io_vector.size())
-  FRESULT mount(FatFs& fs, BYTE pdrv = 0) override {
-    FRESULT rc = FR_OK;
-    for (size_t j = 0; j < io_vector.size(); j++) {
-      rc = io_vector[j]->mount(fs, (BYTE)j);
-      if (rc != FR_OK) break;
-    }
-    return rc;
+  FRESULT mount(FatFs& fs, BYTE ldrv = 0) override {
+      FRESULT rc = FR_OK;
+      for (size_t i = 0, e = io_vector.size(); i < e; ++i) {
+          // we have to say FatFs that each IO from io_vector is separate
+          // logical drive and initiate FATFS creation for it
+          rc = io_vector[i]->mount(fs, (BYTE)i);
+          if (rc != FR_OK) {
+              break;
+          }
+      }
+      return rc;
   }
 
   /// unmount all drivers
-  FRESULT un_mount(FatFs& fs, BYTE pdrv = 0) override {
-    FRESULT result = FR_OK;
-    for (size_t j = 0; j < io_vector.size(); j++) {
-      auto rc = io_vector[j]->un_mount(fs, (BYTE)j);
-      if (rc != FR_OK) result = rc;
-    }
-    return result;
+  FRESULT un_mount(FatFs& fs, BYTE ldrv = 0) override {
+    return io_vector[ldrv]->un_mount(fs, 0);
   }
 
   DSTATUS disk_initialize(BYTE pdrv) override {

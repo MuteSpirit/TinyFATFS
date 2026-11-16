@@ -73,6 +73,17 @@ ctest --output-on-failure
 popd
 ```
 
+## Debug unit tests
+
+You need to rebuild in "Debug" profile:
+
+```sh
+rm -r build
+cmake -DCMAKE_BUILD_TYPE=Debug -S . -B build
+```
+
+After that GDB will find debug info in built test binaries.
+
 # Documentation
 
 - [Supported FAT Versions](docs/supported-fat-versions.md)

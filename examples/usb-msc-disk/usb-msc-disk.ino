@@ -11,6 +11,12 @@
 #include "driver/RamIO.h"
 #include "driver/TinyUsbMscIO.h"
 
+#ifdef FF_MULTI_PARTITION
+PARTITION VolToPart[] {
+  {0, 0}
+};
+#endif
+
 RamIO<2048, 512> ram;  // 1MB RAM disk
 TinyUsbMscIO usbMsc;
 

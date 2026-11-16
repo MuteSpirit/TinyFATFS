@@ -9,6 +9,12 @@
 
 #include "fatfs.h"
 
+#ifdef FF_MULTI_PARTITION
+PARTITION VolToPart[] {
+  {0, 0}
+};
+#endif
+
 RamIO<200 /*sectors*/, 512/*bytes each*/> drv;
 
 static DWORD pn(          /* Pseudo random number generator */

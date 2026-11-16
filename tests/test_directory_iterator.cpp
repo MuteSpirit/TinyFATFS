@@ -9,6 +9,12 @@
 
 using namespace fatfs;
 
+#ifdef FF_MULTI_PARTITION
+PARTITION VolToPart[] {
+  {0, 0}
+};
+#endif
+
 RamIO<200 /*sectors*/, 512 /*bytes each*/> drv;
 
 #ifdef ETL_NO_STL
