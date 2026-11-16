@@ -10,7 +10,7 @@
 
 using namespace fatfs;
 
-RamIO drv{200, 512};
+RamIO<200 /*sectors*/, 512 /*bytes each*/> drv;
 
 void setup() {
   CHECK(SD.begin(drv), "SD.begin() failed");

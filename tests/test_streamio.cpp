@@ -3,14 +3,15 @@
  *
  * Regression coverage for:
  *  - disk_read/disk_write computing the transfer length as
- *    sectorCount * sector_size (was sectorCount + sector_size, which
+ *    sectorCount * SectorSize (was sectorCount + SectorSize, which
  *    truncated/misaligned nearly every real transfer)
  *  - disk_ioctl's GET_SECTOR_COUNT/GET_BLOCK_SIZE copying through
  *    memcpy(buff, &result, ...) (was passing the DWORD value itself as the
  *    source pointer)
  */
 #include <cstring>
-#include <vector>
+#include <inttypes.h>
+#include <cstdlib>
 
 #include "fatfs.h"
 #include "driver/StreamIO.h"
@@ -21,12 +22,13 @@ using namespace fatfs;
 // Minimal in-memory stand-in for the Stream-like type StreamIO<T> expects:
 // begin(), seek(), sectorCount(), eraseSector(from, to), plus the
 // Stream-style readBytes()/write()/flush() used for the actual transfers.
+template <size_t Sectors, size_t SectorSize>
 class MemStream {
  public:
-  MemStream(size_t sectors, size_t sectorSize)
-      : sector_size(sectorSize), data(sectors * sectorSize, 0) {}
+  MemStream()
+  : data(Sectors * SectorSize) {}
 
-  int sectorSize() { return (int)sector_size; }
+  int sectorSize() { return (int)SectorSize; }
   bool begin() { return true; }
   void seek(size_t pos) { position = pos; }
 
@@ -47,22 +49,26 @@ class MemStream {
   }
 
   void flush() {}
-  uint32_t sectorCount() { return (uint32_t)(data.size() / sector_size); }
+  uint32_t sectorCount() { return (uint32_t)(data.size() / SectorSize); }
 
   void eraseSector(uint32_t from, uint32_t to) {
-    memset(data.data() + from * sector_size, 0, (to - from + 1) * sector_size);
+    memset(data.data() + from * SectorSize, 0, (to - from + 1) * SectorSize);
   }
 
  private:
-  size_t sector_size;
-  std::vector<uint8_t> data;
+#ifdef ETL_NO_STL
+  vector<uint8_t, Sectors * SectorSize> data;
+#else
+  vector<uint8_t> data;
+#endif
   size_t position = 0;
 };
 
 void setup() {
   // --- low level: exercise the disk_* contract directly ---
-  MemStream mem(64, 512);
-  StreamIO<MemStream> io(mem);
+  using MemStream64x512 = MemStream<64, 512>;
+  MemStream64x512 mem;
+  StreamIO<MemStream64x512> io(mem);
 
   CHECK(io.disk_initialize(0) == STA_CLEAR, "disk_initialize failed");
 
@@ -76,17 +82,25 @@ void setup() {
         "GET_BLOCK_SIZE ioctl failed");
   CHECK(block_size == 1, "GET_BLOCK_SIZE returned wrong value");
 
-  // multi-sector write/read: with the old `sectorCount + sector_size` bug
+  // multi-sector write/read: with the old `sectorCount + SectorSize` bug
   // this would transfer only ~520 bytes instead of 8*512=4096
-  const UINT n_sectors = 8;
-  std::vector<uint8_t> pattern(n_sectors * 512);
+  constexpr const UINT n_sectors = 8;
+#ifdef ETL_NO_STL
+  vector<uint8_t, n_sectors * 512> pattern;
+#else
+  vector<uint8_t> pattern(n_sectors * 512);
+#endif
   for (size_t i = 0; i < pattern.size(); i++) pattern[i] = (uint8_t)(i * 7 + 3);
 
   CHECK(io.disk_write(0, pattern.data(), 2, n_sectors) == RES_OK,
         "multi-sector disk_write failed");
   CHECK(io.disk_ioctl(0, CTRL_SYNC, nullptr) == RES_OK, "CTRL_SYNC failed");
 
-  std::vector<uint8_t> readback(n_sectors * 512, 0);
+#ifdef ETL_NO_STL
+  vector<uint8_t, n_sectors * 512> readback;
+#else
+  vector<uint8_t> readback(n_sectors * 512);
+#endif
   CHECK(io.disk_read(0, readback.data(), 2, n_sectors) == RES_OK,
         "multi-sector disk_read failed");
   CHECK(memcmp(pattern.data(), readback.data(), pattern.size()) == 0,
@@ -99,8 +113,9 @@ void setup() {
   // backed disk is expected to already carry a filesystem); this in-memory
   // stream starts blank, so format it first, same as a user would with a
   // fresh disk image.
-  MemStream fsmem(200, 512);
-  StreamIO<MemStream> fsio(fsmem);
+  using MemStream200x512 = MemStream<200, 512>;
+  MemStream200x512 fsmem;
+  StreamIO<MemStream200x512> fsio(fsmem);
   SDClass sd(fsio);
   CHECK(sd.mkfs(), "mkfs() over StreamIO failed");
   CHECK(sd.begin(), "SD.begin() over StreamIO failed");

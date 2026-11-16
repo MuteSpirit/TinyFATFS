@@ -11,7 +11,7 @@
 #include "driver/RamIO.h"
 #include "driver/TinyUsbMscIO.h"
 
-RamIO ram{2048, 512};  // 1MB RAM disk
+RamIO<2048, 512> ram;  // 1MB RAM disk
 TinyUsbMscIO usbMsc;
 
 void setup() {

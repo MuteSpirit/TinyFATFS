@@ -328,4 +328,46 @@
 
 #define FF_SPI_SPEED_FAST 20000000 /* SPI fast speed in Hz for SD card access */
 
+/*---------------------------------------------------------------------------/
+/ Template Library Configuration
+/---------------------------------------------------------------------------*/
+
+#if defined(ETL_NO_STL)
+
+#include <Embedded_Template_Library.h>
+#include <etl/string.h>
+#include <etl/vector.h>
+#include <etl/chrono.h>
+#include <thread>
+
+namespace fatfs {
+
+/// String type: ETL fixed-capacity string (replaces std::string)
+using string = etl::string<FF_MAX_LFN>;
+
+/// Vector type: ETL fixed-capacity vector (replaces std::vector)
+template <typename T, size_t N>
+using vector = etl::vector<T, N>;
+
+using std::thread;
+
+} // namespace fatfs
+
+#else // ETL_NO_STL
+
+#include <string>
+#include <vector>
+#include <thread>
+#include <chrono>
+
+namespace fatfs {
+
+using namespace std;
+
+using std::thread;
+
+} // namespace fatfs
+
+#endif // ETL_NO_STL
+
 /*--- End of configuration options ---*/

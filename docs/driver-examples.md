@@ -42,7 +42,7 @@ Here is an example of setting up a SD drive in RAM:
 #include "SPI.h"
 #include "fatfs.h"
 
-RamIO drv{100, 512}; // 100 sector with 512 bytes
+RamIO<100, 512> drv; // 100 sectors with 512 bytes
 File file;
 
 void setup() {

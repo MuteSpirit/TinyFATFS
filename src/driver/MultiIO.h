@@ -68,7 +68,11 @@ class MultiIO : public IO {
   }
 
  protected:
-  std::vector<IO*> io_vector;
+#ifdef ETL_NO_STL
+  vector<IO*, FF_VOLUMES> io_vector;
+#else
+  vector<IO*> io_vector;
+#endif
 };
 
 }  // namespace fatfs

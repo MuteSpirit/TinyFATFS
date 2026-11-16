@@ -349,7 +349,7 @@ class FatFs {
   }
 
 #endif
-};
+}; // class FatFs
 
 /* LFN support functions */
 #if FF_USE_LFN >= 1 /*!< Code conversion (defined in unicode.c) */
@@ -358,7 +358,7 @@ WCHAR ff_uni2oem(DWORD uni, WORD cp); /*!< Unicode to OEM code conversion */
 DWORD ff_wtoupper(DWORD uni);         /*!< Unicode upper-case conversion */
 #endif
 
-}  // namespace fatfs
+} // namespace fatfs
 
 // Header-only library: include implementations
 #ifndef FATFS_HEADER_ONLY_IMPL

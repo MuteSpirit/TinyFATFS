@@ -3,23 +3,19 @@
 // This header provides a directory iterator to ease porting code that expects
 // filesystem helpers. It is not a drop-in replacement for std::filesystem.
 // Uses FatFs API directly (f_opendir, f_readdir, etc.) instead of SD wrapper.
-
 #pragma once
 
 #include <cstring>
-#include <string>
-#include <vector>
 #include "fatfs.h"
 
 namespace fatfs {
-
 
 /**
  * @brief Representation of a directory entry
  * @ingroup iterator
  */
 struct directory_entry {
-  std::string path;
+  string path;
   bool is_directory;
   uint64_t size;  // File size in bytes (0 for directories)
 };
@@ -45,10 +41,10 @@ inline fatfs::FatFs* get_fatfs() { return SD.getFatFs(); }
 class directory_iterator {
  public:
   directory_iterator() : end_flag(true) {}
-  explicit directory_iterator(const std::string& rootPath)
+  explicit directory_iterator(const string& rootPath)
       : directory_iterator(get_fatfs(), rootPath) {}
   /// Iterate the volume of the given FatFs instance (e.g. an SDClass volume)
-  directory_iterator(fatfs::FatFs* fsPtr, const std::string& rootPath)
+  directory_iterator(fatfs::FatFs* fsPtr, const string& rootPath)
       : root(rootPath), end_flag(false) {
     if (!fsPtr) {
       end_flag = true;
@@ -111,7 +107,7 @@ class directory_iterator {
   fatfs::FatFs* fs = nullptr;
   DIR dir;
   FILINFO info;
-  std::string root;
+  string root;
   bool end_flag{true};
 };
 
@@ -140,10 +136,10 @@ class directory_iterator {
 class recursive_directory_iterator {
  public:
   recursive_directory_iterator() : end_flag(true) {}
-  explicit recursive_directory_iterator(const std::string& rootPath)
+  explicit recursive_directory_iterator(const string& rootPath)
       : recursive_directory_iterator(get_fatfs(), rootPath) {}
   /// Iterate the volume of the given FatFs instance (e.g. an SDClass volume)
-  recursive_directory_iterator(fatfs::FatFs* fsPtr, const std::string& rootPath)
+  recursive_directory_iterator(fatfs::FatFs* fsPtr, const string& rootPath)
       : end_flag(false) {
     if (!fsPtr) {
       end_flag = true;
@@ -185,10 +181,10 @@ class recursive_directory_iterator {
  private:
   struct DirLevel {
     DIR dir;
-    std::string path;
+    string path;
   };
 
-  bool push_directory(const std::string& path) {
+  bool push_directory(const string& path) {
     if (!fs) return false;
 
     DirLevel level;
@@ -251,7 +247,12 @@ class recursive_directory_iterator {
   }
 
   fatfs::FatFs* fs = nullptr;
-  std::vector<DirLevel> stack;
+  // FAT32 has no strict limit for directory depth level, let's limit this implementation
+#ifdef ETL_NO_STL
+  vector<DirLevel, 255> stack;
+#else
+  vector<DirLevel> stack;
+#endif
   directory_entry current_entry;
   bool end_flag{true};
 };

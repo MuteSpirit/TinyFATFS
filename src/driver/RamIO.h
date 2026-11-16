@@ -3,7 +3,9 @@
 
 #include <stdlib.h>
 #include <cstring>
-#include <vector>
+
+#include "../fatfs.h"
+
 #include "IO.h"
 
 #if defined(ESP32) || defined(ARDUINO_ARCH_RP2040)
@@ -16,38 +18,36 @@ namespace fatfs {
  * @brief The data is stored in RAM. On an ESP32 or RP2350 when PSRAM has been
  * activated we store it in PSRAM.
  * @ingroup io
+ * @param sectorCount - amount of sectors to store
+ * @param sectorSize - valid sector sizes are 512, 1024, 2048 and 4096
  */
+template<size_t sectorCount, size_t sectorSize = FF_MAX_SS>
 class RamIO : public IO {
  public:
-  //  valid sector sizes are 512, 1024, 2048 and 4096
-  RamIO(int sectorCount, int sectorSize = FF_MAX_SS) {
-    sector_size = sectorSize;
-    sector_count = sectorCount;
+  RamIO() {
+    memset(work_buffer, 0, sizeof(work_buffer));
   }
 
   ~RamIO() {
     for (auto* ptr : sectors) {
       free(ptr);
     }
-    delete[] work_buffer;
   }
-
-  // custom logic on mount: we need to format the drive - implementation at end of header
-  FRESULT mount(FatFs& fs, BYTE pdrv = 0) override;
 
   DSTATUS disk_initialize(BYTE pdrv) override {
     if (pdrv != 0) return STA_NODISK;
+
     // allocate sectors
     if (sectors.size() == 0) {
-      for (int j = 0; j < sector_count; j++) {
+      for (size_t j = 0; j < sectorCount; j++) {
         uint8_t* ptr = nullptr;
 #ifdef ESP32
-        ptr = (uint8_t*)ps_malloc(sector_size);
+        ptr = (uint8_t*)ps_malloc(sectorSize);
 #elif defined(ARDUINO_ARCH_RP2040) && defined(RP2350_PSRAM_CS)
         // free() releases PSRAM blocks as well
-        ptr = (uint8_t*)pmalloc(sector_size);
+        ptr = (uint8_t*)pmalloc(sectorSize);
 #endif
-        if (ptr == nullptr) ptr = (uint8_t*)malloc(sector_size);
+        if (ptr == nullptr) ptr = (uint8_t*)malloc(sectorSize);
         if (ptr == nullptr) {
           // out of memory: release what we got and report the failure
           for (auto* p : sectors) free(p);
@@ -55,7 +55,7 @@ class RamIO : public IO {
           status = STA_NOINIT;
           return status;
         }
-        memset(ptr, 0, sector_size);
+        memset(ptr, 0, sectorSize);
         sectors.push_back(ptr);
       }
     }
@@ -68,27 +68,27 @@ class RamIO : public IO {
     return status;
   }
 
-  DRESULT disk_read(BYTE pdrv, BYTE* buffer, LBA_t sectorNo, UINT sectorCount) override {
+  DRESULT disk_read(BYTE pdrv, BYTE* buffer, LBA_t sectorNo, UINT nSectors) override {
     if (pdrv != 0) return RES_NOTRDY;
     if (status == STA_NOINIT) return RES_NOTRDY;
-    if (sectors.size() == 0 || sectorNo + sectorCount > sector_count) return RES_ERROR;
-    for (int j = sectorNo; j < sectorNo + sectorCount; j++) {
+    if (sectors.size() == 0 || sectorNo + nSectors > sectorCount) return RES_ERROR;
+    for (size_t j = sectorNo; j < sectorNo + nSectors; j++) {
       int idx = j - sectorNo;
       uint8_t* source = sectors[j];
-      memcpy(buffer + (idx * sector_size), source , sector_size);
+      memcpy(buffer + (idx * sectorSize), source , sectorSize);
     }
     return RES_OK;
   }
 
   DRESULT disk_write(BYTE pdrv, const BYTE* buffer, LBA_t sectorNo,
-                     UINT sectorCount) override {
+                     UINT nSectors) override {
     if (pdrv != 0) return RES_NOTRDY;
     if (status == STA_NOINIT) return RES_NOTRDY;
-    if (sectors.size() == 0 || sectorNo + sectorCount > sector_count) return RES_ERROR;
-    for (int j = sectorNo; j < sectorNo + sectorCount; j++) {
-      int idx = j - sectorNo;
+    if (sectors.size() == 0 || sectorNo + nSectors > sectorCount) return RES_ERROR;
+    for (size_t j = sectorNo; j < sectorNo + nSectors; j++) {
+      size_t idx = j - sectorNo;
       uint8_t* target = sectors[j];
-      memcpy(target, buffer + (idx * sector_size), sector_size);
+      memcpy(target, buffer + (idx * sectorSize), sectorSize);
     }
     return RES_OK;
   }
@@ -103,7 +103,7 @@ class RamIO : public IO {
 
       case GET_SECTOR_COUNT: { /* Get drive capacity in unit of sector (DWORD)
                                 */
-        DWORD result = sector_count;
+        DWORD result = sectorCount;
         memcpy(buffer, &result, (sizeof(result)));
         res = RES_OK;
       } break;
@@ -125,14 +125,14 @@ class RamIO : public IO {
         // determine range
         memcpy(&range, buffer, sizeof(range));
         // validate range: must be inside the drive and allocated
-        if (range[0] > range[1] || range[1] >= sector_count ||
-            sectors.size() != sector_count) {
+        if (range[0] > range[1] || range[1] >= sectorCount ||
+            sectors.size() != sectorCount) {
           res = RES_PARERR;
           break;
         }
         // clear memory
         for (DWORD j = range[0]; j <= range[1]; j++) {
-          memset(sectors[j], 0, sector_size);
+          memset(sectors[j], 0, sectorSize);
         }
         res = RES_OK; /* FatFs does not check result of this command */
       } break;
@@ -144,24 +144,30 @@ class RamIO : public IO {
     return res;
   }
 
+  virtual FRESULT mount(FatFs& fs, BYTE pdrv) override
+  {
+      memset(work_buffer, 0, sizeof(work_buffer));
+
+      // the file system is empty so we need to format it
+      char path[6] = {0};
+      snprintf(path, sizeof(path), "%d:", pdrv);
+      FRESULT rc = fs.f_mkfs(path, nullptr, work_buffer, sizeof(work_buffer));
+      if (FR_OK != rc) {
+        return rc;
+      }
+
+      return fs.f_mount(&fatfs, path, 0);
+  }
+
  protected:
-  std::vector<uint8_t*> sectors;
+#ifdef ETL_NO_STL
+  vector<uint8_t*, sectorCount> sectors;
+#else
+  vector<uint8_t*> sectors;
+#endif
   DSTATUS status = STA_NOINIT;
-  int sector_size = 512;
-  size_t sector_count = 0;
-  uint8_t *work_buffer = nullptr;
+  uint8_t work_buffer[FF_MAX_SS];
 };
 
-// Inline implementation (moved from RamIO.cpp)
-inline FRESULT RamIO::mount(FatFs& fs, BYTE pdrv) {
-  // the file system is empty so we need to format it
-  if (work_buffer == nullptr) work_buffer = new uint8_t[FF_MAX_SS];
-  char path[6];
-  snprintf(path, sizeof(path), "%d:", pdrv);
-  fs.f_mkfs(path, nullptr, work_buffer, FF_MAX_SS);
-
-  // standard mount logic
-  return IO::mount(fs, pdrv);
-}
 
 }  // namespace fatfs

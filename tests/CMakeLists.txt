@@ -4,6 +4,12 @@ cmake_minimum_required(VERSION 3.16)
 # MultiIO) and the SDClass/File layer on top of them. SPI/SDMMC drivers need
 # real hardware and are exercised via the examples instead.
 
+option(FATFS_ETL_NO_STL "build with ETL instead of STL" OFF)
+
+if(FATFS_ETL_NO_STL)
+  add_compile_options(-DETL_NO_STL -DETL_NO_INITIALIZER_LIST -DETL_NO_EXCEPTIONS)
+endif()
+
 function(fatfs_add_test name)
   add_executable(${name} ${name}.cpp)
   target_include_directories(${name} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

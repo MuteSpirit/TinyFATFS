@@ -1,7 +1,7 @@
 #include "assert.h"
 #include "fatfs.h"
 
-RamIO drv{200, 512};  // 100 sector with 512 bytes
+RamIO<200 /*sectors*/, 512 /*bytes each*/> drv;  // 200 sectors with 512 bytes
 
 void setup() {
   Serial.begin(115200);

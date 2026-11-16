@@ -3,6 +3,12 @@ cmake_minimum_required(VERSION 3.16)
 # set the project name
 project(driver_test LANGUAGES CXX)
 
+option(FATFS_ETL_NO_STL "build with ETL instead of STL" OFF)
+
+if(FATFS_ETL_NO_STL)
+  add_compile_options(-DETL_NO_STL -DETL_NO_INITIALIZER_LIST -DETL_NO_EXCEPTIONS)
+endif()
+
 set (DCMAKE_CXX_FLAGS -Werror -Wall -Wextra)
 set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address")
 set (CMAKE_LINKER_FLAGS_DEBUG "${CMAKE_LINKER_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address")

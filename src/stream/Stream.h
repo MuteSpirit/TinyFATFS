@@ -3,18 +3,19 @@
  * Some simple but incomplete Arduino Emulation Classes to be used outside of Arduino
  */
 #pragma once
+
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-
 #include <cstddef>
-#include <string>
+#include "../ff/ffconf.h"
+
 
 enum PrintCharFmt { DEC, HEX };
 
 namespace fatfs {
 
-using String = std::string;
+using String = string;
 
 class Print {
  public:

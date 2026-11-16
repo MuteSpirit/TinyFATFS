@@ -9,7 +9,7 @@
 
 #include "fatfs.h"
 
-RamIO drv{200, 512};  // 200 sectors with 512 bytes each
+RamIO<200 /*sectors*/, 512/*bytes each*/> drv;
 
 static DWORD pn(          /* Pseudo random number generator */
                 DWORD pns /* 0:Initialize, !0:Read */

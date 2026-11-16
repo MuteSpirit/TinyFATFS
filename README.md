@@ -12,6 +12,31 @@ I am providing the [FatFs library](http://elm-chan.org/fsw/ff/00index_e.html) de
 
 The advantage of this library is, that it provides quite a few __[configuration options](http://elm-chan.org/fsw/ff/doc/config.html#use_mkfs)__ and has a flexible __[driver concept](docs/driver-overview.md)__, so that we can store the data potentially on a SD disk, in RAM, PSRAM, on remote devices etc. 
 
+# Fork
+
+## Fork reason
+
+* Migration to Embedded Template Library (ETL).
+  * Reason: CredsHolder project uses ETL and do not use C++ extensions. TinyFATFS uses STL by default and CredsHolder build fails trying to find definition for function throwing extensions inside std::vector implementation.
+* TinyFATFS API extending and improvement to be able implement VeraCryptIO driver.
+
+## Fork maintain
+
+* :exclamation: Do not add changes/commits into `main` branch
+  * Reason: it's simple way to split origin and fork commits and avoid conflicts on receiving new updates.
+* :exclamation: Main branch for modifications is `fork_creds_holder` now
+
+To get updates from upstream project:
+* Add upstream project as git remote `upstream`
+* Switch to `main` branch
+* Pull last changes from remote `upstream`
+  * That will happen without any conflicts and branch history changes.
+* Switch to `fork_creds_holder` branch
+* Merge `main` branch into `fork_creds_holder` one
+  * Reason 1: Rebase of conflicting changes will force to resolve all of them on each such update. It's complex and spend a lot of time.
+  * Reason 2: Merge commits will explicitly show time points of bump "VeraCrypt base code"
+* Push into fork repository
+* Rebase all active branches checked out from `fork_creds_holder` one
 
 # Installation
 
@@ -20,6 +45,32 @@ For Arduino, you can download the library as zip and call Include Library -> Add
 ```bash
 cd ~/Documents/Arduino/libraries
 git clone https://github.com/pschatzmann/TinyFATFS.git
+```
+
+# Build
+
+## With STL
+
+```sh
+rm -r ./build
+cmake -S . -B build
+make -C build -j$(nproc)
+```
+
+## With ETL
+
+```sh
+rm -r ./build
+cmake -S . -B build
+make -C build -j$(nproc)
+```
+
+## Run unit tests
+
+```sh
+pushd build
+ctest --output-on-failure
+popd
 ```
 
 # Documentation

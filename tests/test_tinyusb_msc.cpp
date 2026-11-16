@@ -16,7 +16,7 @@
 
 using namespace fatfs;
 
-RamIO ram{64, 512};
+RamIO<64 /*sectors*/, 512 /*bytes each*/> ram;
 TinyUsbMscIO usbMsc;
 
 void setup() {

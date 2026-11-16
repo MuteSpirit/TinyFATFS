@@ -16,8 +16,8 @@
 
 using namespace fatfs;
 
-RamIO drvA{200, 512};
-RamIO drvB{200, 512};
+RamIO<200 /*sectors*/, 512 /*bytes each*/> drvA;
+RamIO<200 /*sectors*/, 512 /*bytes each*/> drvB;
 MultiIO multi;
 
 void setup() {

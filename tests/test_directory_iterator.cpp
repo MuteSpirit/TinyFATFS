@@ -2,18 +2,21 @@
  * Covers SDClass::directoryIterator() and SDClass::recursiveDirectoryIterator(),
  * which iterate the volume of the SD object they are called on.
  */
-#include <string>
-#include <vector>
-
 #include "fatfs.h"
+#include "ff/ffconf.h"
 #include "filesystem.h"
 #include "test_common.h"
 
 using namespace fatfs;
 
-RamIO drv{200, 512};
+RamIO<200 /*sectors*/, 512 /*bytes each*/> drv;
 
-static bool contains(const std::vector<std::string>& v, const std::string& s) {
+#ifdef ETL_NO_STL
+using vector_entries = vector<string, 16>;
+#else
+using vector_entries = vector<string>;
+#endif
+static bool contains(const vector_entries& v, const string& s) {
   for (const auto& e : v) {
     if (e == s) return true;
   }
@@ -44,7 +47,7 @@ void setup() {
   createFile("/dir/sub/c.txt", "c");
 
   // non-recursive iterator on the root: a.txt and dir, but not nested files
-  std::vector<std::string> root_entries;
+  vector_entries root_entries;
   for (auto it = SD.directoryIterator("/");
        it != directory_iterator::end(); ++it) {
     root_entries.push_back((*it).path);
@@ -54,7 +57,7 @@ void setup() {
   CHECK(contains(root_entries, "/dir"), "directoryIterator(\"/\") missing /dir");
 
   // non-recursive iterator on /dir: b.txt and sub, not c.txt
-  std::vector<std::string> dir_entries;
+  vector_entries dir_entries;
   bool sub_is_dir = false;
   for (auto it = SD.directoryIterator("/dir");
        it != directory_iterator::end(); ++it) {
@@ -68,7 +71,7 @@ void setup() {
   CHECK(sub_is_dir, "/dir/sub not reported as a directory");
 
   // recursive iterator on the root: all 5 entries, including nested files
-  std::vector<std::string> all_entries;
+  vector_entries all_entries;
   for (auto it = SD.recursiveDirectoryIterator("/");
        it != recursive_directory_iterator::end(); ++it) {
     all_entries.push_back((*it).path);

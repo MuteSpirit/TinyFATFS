@@ -16,7 +16,7 @@
 #define CS 13
 
 // Helper function to count directory depth for indentation
-int getDepth(const std::string &path) {
+int getDepth(const string &path) {
   int depth = 0;
   for (char c : path) {
     if (c == '/') depth++;
@@ -56,7 +56,7 @@ void setup() {
     
     // Calculate indentation based on path depth
     int depth = getDepth(entry.path);
-    std::string indent;
+    string indent;
     for (int i = 0; i < depth; i++) {
       indent += "  ";
     }
