@@ -101,25 +101,24 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keywordtype">void</span> add(<a class="code hl_class" href="classfatfs_1_1IO.html">IO</a>&amp; io) { io_vector.push_back(&amp;io); }</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="foldopen" id="foldopen00029" data-start="{" data-end="}">
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classfatfs_1_1MultiIO.html#a49d61683cf29c9a19347f9b737734020">   29</a></span>  FRESULT <a class="code hl_function" href="classfatfs_1_1MultiIO.html#a49d61683cf29c9a19347f9b737734020">mount</a>(<a class="code hl_class" href="classfatfs_1_1FatFs.html">FatFs</a>&amp; fs, BYTE pdrv = 0)<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    FRESULT rc = FR_OK;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; io_vector.size(); j++) {</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>      rc = io_vector[j]-&gt;mount(fs, (BYTE)j);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>      <span class="keywordflow">if</span> (rc != FR_OK) <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    }</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">return</span> rc;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  }</div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="}">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classfatfs_1_1MultiIO.html#a8b5171053efcc43b2542172616fb7e2e">   30</a></span>  FRESULT <a class="code hl_function" href="classfatfs_1_1MultiIO.html#a8b5171053efcc43b2542172616fb7e2e">mount</a>(<a class="code hl_class" href="classfatfs_1_1FatFs.html">FatFs</a>&amp; fs, BYTE ldrv = 0)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      FRESULT rc = FR_OK;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>      <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0, e = io_vector.size(); i &lt; e; ++i) {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>          <span class="comment">// we have to say FatFs that each IO from io_vector is separate</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>          <span class="comment">// logical drive and initiate FATFS creation for it</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>          rc = io_vector[i]-&gt;mount(fs, (BYTE)i);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>          <span class="keywordflow">if</span> (rc != FR_OK) {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>              <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>          }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>      }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  }</div>
 </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classfatfs_1_1MultiIO.html#a65f2f5d7d0e968b8f8003823f5f193b3">   39</a></span>  FRESULT <a class="code hl_function" href="classfatfs_1_1MultiIO.html#a65f2f5d7d0e968b8f8003823f5f193b3">un_mount</a>(<a class="code hl_class" href="classfatfs_1_1FatFs.html">FatFs</a>&amp; fs, BYTE pdrv = 0)<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    FRESULT result = FR_OK;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; io_vector.size(); j++) {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <span class="keyword">auto</span> rc = io_vector[j]-&gt;un_mount(fs, (BYTE)j);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>      <span class="keywordflow">if</span> (rc != FR_OK) result = rc;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classfatfs_1_1MultiIO.html#a31f01f8c4f2fa67eba984938779c70ed">   44</a></span>  FRESULT <a class="code hl_function" href="classfatfs_1_1MultiIO.html#a31f01f8c4f2fa67eba984938779c70ed">un_mount</a>(<a class="code hl_class" href="classfatfs_1_1FatFs.html">FatFs</a>&amp; fs, BYTE ldrv = 0)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">return</span> io_vector[ldrv]-&gt;un_mount(fs, 0);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  }</div>
 </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
@@ -146,16 +145,20 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  }</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  std::vector&lt;IO*&gt; io_vector;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>};</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="preprocessor">#ifdef ETL_NO_STL</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  vector&lt;IO*, FF_VOLUMES&gt; io_vector;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  vector&lt;IO*&gt; io_vector;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>};</div>
 </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}  <span class="comment">// namespace fatfs</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>}  <span class="comment">// namespace fatfs</span></div>
 <div class="ttc" id="aclassfatfs_1_1FatFs_html"><div class="ttname"><a href="classfatfs_1_1FatFs.html">fatfs::FatFs</a></div><div class="ttdoc">API for FatFS See http://elm-chan.org/fsw/ff/00index_e.html.</div><div class="ttdef"><b>Definition</b> ff.h:42</div></div>
 <div class="ttc" id="aclassfatfs_1_1IO_html"><div class="ttname"><a href="classfatfs_1_1IO.html">fatfs::IO</a></div><div class="ttdoc">FatFS interface definition.</div><div class="ttdef"><b>Definition</b> IO.h:75</div></div>
 <div class="ttc" id="aclassfatfs_1_1MultiIO_html"><div class="ttname"><a href="classfatfs_1_1MultiIO.html">fatfs::MultiIO</a></div><div class="ttdoc">File system driver which supports multiple drives: Add the drivers by calling add() then call mount()...</div><div class="ttdef"><b>Definition</b> MultiIO.h:21</div></div>
-<div class="ttc" id="aclassfatfs_1_1MultiIO_html_a49d61683cf29c9a19347f9b737734020"><div class="ttname"><a href="classfatfs_1_1MultiIO.html#a49d61683cf29c9a19347f9b737734020">fatfs::MultiIO::mount</a></div><div class="ttdeci">FRESULT mount(FatFs &amp;fs, BYTE pdrv=0) override</div><div class="ttdef"><b>Definition</b> MultiIO.h:29</div></div>
-<div class="ttc" id="aclassfatfs_1_1MultiIO_html_a65f2f5d7d0e968b8f8003823f5f193b3"><div class="ttname"><a href="classfatfs_1_1MultiIO.html#a65f2f5d7d0e968b8f8003823f5f193b3">fatfs::MultiIO::un_mount</a></div><div class="ttdeci">FRESULT un_mount(FatFs &amp;fs, BYTE pdrv=0) override</div><div class="ttdoc">unmount all drivers</div><div class="ttdef"><b>Definition</b> MultiIO.h:39</div></div>
+<div class="ttc" id="aclassfatfs_1_1MultiIO_html_a31f01f8c4f2fa67eba984938779c70ed"><div class="ttname"><a href="classfatfs_1_1MultiIO.html#a31f01f8c4f2fa67eba984938779c70ed">fatfs::MultiIO::un_mount</a></div><div class="ttdeci">FRESULT un_mount(FatFs &amp;fs, BYTE ldrv=0) override</div><div class="ttdoc">unmount all drivers</div><div class="ttdef"><b>Definition</b> MultiIO.h:44</div></div>
+<div class="ttc" id="aclassfatfs_1_1MultiIO_html_a8b5171053efcc43b2542172616fb7e2e"><div class="ttname"><a href="classfatfs_1_1MultiIO.html#a8b5171053efcc43b2542172616fb7e2e">fatfs::MultiIO::mount</a></div><div class="ttdeci">FRESULT mount(FatFs &amp;fs, BYTE ldrv=0) override</div><div class="ttdef"><b>Definition</b> MultiIO.h:30</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

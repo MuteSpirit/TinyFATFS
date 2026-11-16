@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Arduino FatFS: fatfs::RamIO Class Reference</title>
+<title>Arduino FatFS: fatfs::RamIO&lt; sectorCount, sectorSize &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,58 +78,55 @@ $(function() {
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classfatfs_1_1RamIO-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">fatfs::RamIO Class Reference<div class="ingroups"><a class="el" href="group__main.html">Arduino FatFs</a> &raquo; <a class="el" href="group__io.html">IO</a></div></div></div>
+  <div class="headertitle"><div class="title">fatfs::RamIO&lt; sectorCount, sectorSize &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">Arduino FatFs</a> &raquo; <a class="el" href="group__io.html">IO</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>The data is stored in RAM. In a ESP32 when PSRAM has been activated we store it is PSRAM.  
+<p>The data is stored in RAM. On an ESP32 or RP2350 when PSRAM has been activated we store it in PSRAM.  
  <a href="classfatfs_1_1RamIO.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="RamIO_8h_source.html">RamIO.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for fatfs::RamIO:</div>
+Inheritance diagram for fatfs::RamIO&lt; sectorCount, sectorSize &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classfatfs_1_1RamIO__inherit__graph.png" border="0" usemap="#afatfs_1_1RamIO_inherit__map" alt="Inheritance graph"/></div>
-<map name="afatfs_1_1RamIO_inherit__map" id="afatfs_1_1RamIO_inherit__map">
-<area shape="rect" title="The data is stored in RAM. In a ESP32 when PSRAM has been activated we store it is PSRAM." alt="" coords="5,79,109,104"/>
-<area shape="rect" href="classfatfs_1_1IO.html" title="FatFS interface definition." alt="" coords="20,5,95,31"/>
-<area shape="poly" title=" " alt="" coords="60,44,60,79,55,79,55,44"/>
+<div class="center"><img src="classfatfs_1_1RamIO__inherit__graph.png" border="0" usemap="#afatfs_1_1RamIO_3_01sectorCount_00_01sectorSize_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="afatfs_1_1RamIO_3_01sectorCount_00_01sectorSize_01_4_inherit__map" id="afatfs_1_1RamIO_3_01sectorCount_00_01sectorSize_01_4_inherit__map">
+<area shape="rect" title="The data is stored in RAM. On an ESP32 or RP2350 when PSRAM has been activated we store it in PSRAM." alt="" coords="5,79,191,119"/>
+<area shape="rect" href="classfatfs_1_1IO.html" title="FatFS interface definition." alt="" coords="63,5,133,31"/>
+<area shape="poly" title=" " alt="" coords="101,44,101,79,95,79,95,44"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
-Collaboration diagram for fatfs::RamIO:</div>
+Collaboration diagram for fatfs::RamIO&lt; sectorCount, sectorSize &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classfatfs_1_1RamIO__coll__graph.png" border="0" usemap="#afatfs_1_1RamIO_coll__map" alt="Collaboration graph"/></div>
-<map name="afatfs_1_1RamIO_coll__map" id="afatfs_1_1RamIO_coll__map">
-<area shape="rect" title="The data is stored in RAM. In a ESP32 when PSRAM has been activated we store it is PSRAM." alt="" coords="5,168,109,193"/>
-<area shape="rect" href="classfatfs_1_1IO.html" title="FatFS interface definition." alt="" coords="20,93,95,119"/>
-<area shape="poly" title=" " alt="" coords="60,133,60,168,55,168,55,133"/>
-<area shape="rect" href="structfatfs_1_1FATFS.html" title=" " alt="" coords="9,5,106,31"/>
-<area shape="poly" title=" " alt="" coords="60,45,60,93,55,93,55,45"/>
+<div class="center"><img src="classfatfs_1_1RamIO__coll__graph.png" border="0" usemap="#afatfs_1_1RamIO_3_01sectorCount_00_01sectorSize_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="afatfs_1_1RamIO_3_01sectorCount_00_01sectorSize_01_4_coll__map" id="afatfs_1_1RamIO_3_01sectorCount_00_01sectorSize_01_4_coll__map">
+<area shape="rect" title="The data is stored in RAM. On an ESP32 or RP2350 when PSRAM has been activated we store it in PSRAM." alt="" coords="5,168,191,208"/>
+<area shape="rect" href="classfatfs_1_1IO.html" title="FatFS interface definition." alt="" coords="63,93,133,119"/>
+<area shape="poly" title=" " alt="" coords="101,132,101,168,95,168,95,132"/>
+<area shape="rect" href="structfatfs_1_1FATFS.html" title=" " alt="" coords="49,5,147,31"/>
+<area shape="poly" title=" " alt="" coords="101,45,101,93,95,93,95,45"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5f0769f6b705b54daf60592e71cd2640" id="r_a5f0769f6b705b54daf60592e71cd2640"><td class="memItemLeft" align="right" valign="top"><a id="a5f0769f6b705b54daf60592e71cd2640" name="a5f0769f6b705b54daf60592e71cd2640"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>RamIO</b> (int sectorCount, int sectorSize=FF_MAX_SS)</td></tr>
-<tr class="separator:a5f0769f6b705b54daf60592e71cd2640"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a111f1532db81544176c41c4e56861ce7" id="r_a111f1532db81544176c41c4e56861ce7"><td class="memItemLeft" align="right" valign="top">FRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1RamIO.html#a111f1532db81544176c41c4e56861ce7">mount</a> (<a class="el" href="classfatfs_1_1FatFs.html">FatFs</a> &amp;fs, BYTE pdrv=0) override</td></tr>
-<tr class="memdesc:a111f1532db81544176c41c4e56861ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">mount the file system at the given logical drive number (0..FF_VOLUMES-1) - implementation at end of header to avoid recursive include  <br /></td></tr>
-<tr class="separator:a111f1532db81544176c41c4e56861ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa06aa84dde20636439d0ffe29fb8b2d" id="r_afa06aa84dde20636439d0ffe29fb8b2d"><td class="memItemLeft" align="right" valign="top">DSTATUS&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1RamIO.html#afa06aa84dde20636439d0ffe29fb8b2d">disk_initialize</a> (BYTE pdrv) override</td></tr>
-<tr class="separator:afa06aa84dde20636439d0ffe29fb8b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07e302beda551ce6b813d960186fe167" id="r_a07e302beda551ce6b813d960186fe167"><td class="memItemLeft" align="right" valign="top">DSTATUS&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1RamIO.html#a07e302beda551ce6b813d960186fe167">disk_status</a> (BYTE pdrv) override</td></tr>
-<tr class="separator:a07e302beda551ce6b813d960186fe167"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadb08579548c44a3430699443f7e4405" id="r_aadb08579548c44a3430699443f7e4405"><td class="memItemLeft" align="right" valign="top">DRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1RamIO.html#aadb08579548c44a3430699443f7e4405">disk_read</a> (BYTE pdrv, BYTE *buffer, LBA_t sectorNo, UINT sectorCount) override</td></tr>
-<tr class="separator:aadb08579548c44a3430699443f7e4405"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7f381cf84a3249170e5729cbe23928a" id="r_ac7f381cf84a3249170e5729cbe23928a"><td class="memItemLeft" align="right" valign="top">DRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1RamIO.html#ac7f381cf84a3249170e5729cbe23928a">disk_write</a> (BYTE pdrv, const BYTE *buffer, LBA_t sectorNo, UINT sectorCount) override</td></tr>
-<tr class="separator:ac7f381cf84a3249170e5729cbe23928a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83538c4d6fc5fcf2bec7dceed8261906" id="r_a83538c4d6fc5fcf2bec7dceed8261906"><td class="memItemLeft" align="right" valign="top">DRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1RamIO.html#a83538c4d6fc5fcf2bec7dceed8261906">disk_ioctl</a> (BYTE pdrv, ioctl_cmd_t cmd, void *buffer) override</td></tr>
-<tr class="separator:a83538c4d6fc5fcf2bec7dceed8261906"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15d3b5c681c36305058ac5c2e24590ab" id="r_a15d3b5c681c36305058ac5c2e24590ab"><td class="memItemLeft" align="right" valign="top">virtual FRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1IO.html#a15d3b5c681c36305058ac5c2e24590ab">un_mount</a> (<a class="el" href="classfatfs_1_1FatFs.html">FatFs</a> &amp;fs, BYTE pdrv=0)</td></tr>
-<tr class="memdesc:a15d3b5c681c36305058ac5c2e24590ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">unmount the file system at the given logical drive number - implementation at end of header to avoid recursive include  <br /></td></tr>
-<tr class="separator:a15d3b5c681c36305058ac5c2e24590ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49dec47fb2168623de028d9d40bba6d6" id="r_a49dec47fb2168623de028d9d40bba6d6"><td class="memItemLeft" align="right" valign="top">DSTATUS&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1RamIO.html#a49dec47fb2168623de028d9d40bba6d6">disk_initialize</a> (BYTE pdrv) override</td></tr>
+<tr class="separator:a49dec47fb2168623de028d9d40bba6d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c60cf17169bb297dd5bb7de7940bd5d" id="r_a6c60cf17169bb297dd5bb7de7940bd5d"><td class="memItemLeft" align="right" valign="top">DSTATUS&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1RamIO.html#a6c60cf17169bb297dd5bb7de7940bd5d">disk_status</a> (BYTE pdrv) override</td></tr>
+<tr class="separator:a6c60cf17169bb297dd5bb7de7940bd5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adadc0a7e67075fa88b19414584f07c9a" id="r_adadc0a7e67075fa88b19414584f07c9a"><td class="memItemLeft" align="right" valign="top">DRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1RamIO.html#adadc0a7e67075fa88b19414584f07c9a">disk_read</a> (BYTE pdrv, BYTE *buffer, LBA_t sectorNo, UINT nSectors) override</td></tr>
+<tr class="separator:adadc0a7e67075fa88b19414584f07c9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f86b7d03a4b5d289ed9f1297ad5beb9" id="r_a7f86b7d03a4b5d289ed9f1297ad5beb9"><td class="memItemLeft" align="right" valign="top">DRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1RamIO.html#a7f86b7d03a4b5d289ed9f1297ad5beb9">disk_write</a> (BYTE pdrv, const BYTE *buffer, LBA_t sectorNo, UINT nSectors) override</td></tr>
+<tr class="separator:a7f86b7d03a4b5d289ed9f1297ad5beb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add60bac2b08a85a811e0664731bec75a" id="r_add60bac2b08a85a811e0664731bec75a"><td class="memItemLeft" align="right" valign="top">DRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1RamIO.html#add60bac2b08a85a811e0664731bec75a">disk_ioctl</a> (BYTE pdrv, ioctl_cmd_t cmd, void *buffer) override</td></tr>
+<tr class="separator:add60bac2b08a85a811e0664731bec75a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b80bfc3cced05486edbc5dabbfefe37" id="r_a7b80bfc3cced05486edbc5dabbfefe37"><td class="memItemLeft" align="right" valign="top">virtual FRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1RamIO.html#a7b80bfc3cced05486edbc5dabbfefe37">mount</a> (<a class="el" href="classfatfs_1_1FatFs.html">FatFs</a> &amp;fs, BYTE ldrv) override</td></tr>
+<tr class="memdesc:a7b80bfc3cced05486edbc5dabbfefe37"><td class="mdescLeft">&#160;</td><td class="mdescRight">mount the file system at the given logical drive number (0..FF_VOLUMES-1) - implementation at end of header to avoid recursive include  <br /></td></tr>
+<tr class="separator:a7b80bfc3cced05486edbc5dabbfefe37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73839aa5e7b6a74088cb94adac25de3c" id="r_a73839aa5e7b6a74088cb94adac25de3c"><td class="memItemLeft" align="right" valign="top">virtual FRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1IO.html#a73839aa5e7b6a74088cb94adac25de3c">un_mount</a> (<a class="el" href="classfatfs_1_1FatFs.html">FatFs</a> &amp;fs, BYTE ldrv=0)</td></tr>
+<tr class="memdesc:a73839aa5e7b6a74088cb94adac25de3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">unmount the file system at the given logical drive number - implementation at end of header to avoid recursive include  <br /></td></tr>
+<tr class="separator:a73839aa5e7b6a74088cb94adac25de3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -140,36 +137,40 @@ Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ac3fafba44dc22cae8ff0205b42e14b2c" id="r_ac3fafba44dc22cae8ff0205b42e14b2c"><td class="memItemLeft" align="right" valign="top"><a id="ac3fafba44dc22cae8ff0205b42e14b2c" name="ac3fafba44dc22cae8ff0205b42e14b2c"></a>
-std::vector&lt; uint8_t * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>sectors</b></td></tr>
-<tr class="separator:ac3fafba44dc22cae8ff0205b42e14b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99cae753a46e37e614920363584e7662" id="r_a99cae753a46e37e614920363584e7662"><td class="memItemLeft" align="right" valign="top"><a id="a99cae753a46e37e614920363584e7662" name="a99cae753a46e37e614920363584e7662"></a>
+<tr class="memitem:affb909396f7425844d0a0166d0c18a88" id="r_affb909396f7425844d0a0166d0c18a88"><td class="memItemLeft" align="right" valign="top"><a id="affb909396f7425844d0a0166d0c18a88" name="affb909396f7425844d0a0166d0c18a88"></a>
+vector&lt; uint8_t * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>sectors</b></td></tr>
+<tr class="separator:affb909396f7425844d0a0166d0c18a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80943f2dc020974d78d41d321bc6328e" id="r_a80943f2dc020974d78d41d321bc6328e"><td class="memItemLeft" align="right" valign="top"><a id="a80943f2dc020974d78d41d321bc6328e" name="a80943f2dc020974d78d41d321bc6328e"></a>
 DSTATUS&#160;</td><td class="memItemRight" valign="bottom"><b>status</b> = STA_NOINIT</td></tr>
-<tr class="separator:a99cae753a46e37e614920363584e7662"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a249cf635098ba86beca1f2a583a34eb2" id="r_a249cf635098ba86beca1f2a583a34eb2"><td class="memItemLeft" align="right" valign="top"><a id="a249cf635098ba86beca1f2a583a34eb2" name="a249cf635098ba86beca1f2a583a34eb2"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>sector_size</b> = 512</td></tr>
-<tr class="separator:a249cf635098ba86beca1f2a583a34eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa7aefabacf91c48178e42d518a5083f" id="r_afa7aefabacf91c48178e42d518a5083f"><td class="memItemLeft" align="right" valign="top"><a id="afa7aefabacf91c48178e42d518a5083f" name="afa7aefabacf91c48178e42d518a5083f"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>sector_count</b> = 0</td></tr>
-<tr class="separator:afa7aefabacf91c48178e42d518a5083f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae19049eec66723d5709891f7f58c22a5" id="r_ae19049eec66723d5709891f7f58c22a5"><td class="memItemLeft" align="right" valign="top"><a id="ae19049eec66723d5709891f7f58c22a5" name="ae19049eec66723d5709891f7f58c22a5"></a>
-uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>work_buffer</b> = nullptr</td></tr>
-<tr class="separator:ae19049eec66723d5709891f7f58c22a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a80943f2dc020974d78d41d321bc6328e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae39d72fe51b4a92b24f7348f7dc1f401" id="r_ae39d72fe51b4a92b24f7348f7dc1f401"><td class="memItemLeft" align="right" valign="top"><a id="ae39d72fe51b4a92b24f7348f7dc1f401" name="ae39d72fe51b4a92b24f7348f7dc1f401"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>work_buffer</b> [FF_MAX_SS]</td></tr>
+<tr class="separator:ae39d72fe51b4a92b24f7348f7dc1f401"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The data is stored in RAM. In a ESP32 when PSRAM has been activated we store it is PSRAM. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;size_t sectorCount, size_t sectorSize = FF_MAX_SS&gt;<br />
+class fatfs::RamIO&lt; sectorCount, sectorSize &gt;</div><p>The data is stored in RAM. On an ESP32 or RP2350 when PSRAM has been activated we store it in PSRAM. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sectorCount</td><td>- amount of sectors to store </td></tr>
+    <tr><td class="paramname">sectorSize</td><td>- valid sector sizes are 512, 1024, 2048 and 4096 </td></tr>
+  </table>
+  </dd>
+</dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="afa06aa84dde20636439d0ffe29fb8b2d" name="afa06aa84dde20636439d0ffe29fb8b2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa06aa84dde20636439d0ffe29fb8b2d">&#9670;&#160;</a></span>disk_initialize()</h2>
+<a id="a49dec47fb2168623de028d9d40bba6d6" name="a49dec47fb2168623de028d9d40bba6d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49dec47fb2168623de028d9d40bba6d6">&#9670;&#160;</a></span>disk_initialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;size_t sectorCount, size_t sectorSize = FF_MAX_SS&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">DSTATUS fatfs::RamIO::disk_initialize </td>
+          <td class="memname">DSTATUS <a class="el" href="classfatfs_1_1RamIO.html">fatfs::RamIO</a>&lt; sectorCount, sectorSize &gt;::disk_initialize </td>
           <td>(</td>
           <td class="paramtype">BYTE&#160;</td>
           <td class="paramname"><em>pdrv</em></td><td>)</td>
@@ -187,17 +188,19 @@ uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>work_buffer</b> 
 
 </div>
 </div>
-<a id="a83538c4d6fc5fcf2bec7dceed8261906" name="a83538c4d6fc5fcf2bec7dceed8261906"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a83538c4d6fc5fcf2bec7dceed8261906">&#9670;&#160;</a></span>disk_ioctl()</h2>
+<a id="add60bac2b08a85a811e0664731bec75a" name="add60bac2b08a85a811e0664731bec75a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add60bac2b08a85a811e0664731bec75a">&#9670;&#160;</a></span>disk_ioctl()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;size_t sectorCount, size_t sectorSize = FF_MAX_SS&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">DRESULT fatfs::RamIO::disk_ioctl </td>
+          <td class="memname">DRESULT <a class="el" href="classfatfs_1_1RamIO.html">fatfs::RamIO</a>&lt; sectorCount, sectorSize &gt;::disk_ioctl </td>
           <td>(</td>
           <td class="paramtype">BYTE&#160;</td>
           <td class="paramname"><em>pdrv</em>, </td>
@@ -231,17 +234,19 @@ uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>work_buffer</b> 
 
 </div>
 </div>
-<a id="aadb08579548c44a3430699443f7e4405" name="aadb08579548c44a3430699443f7e4405"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aadb08579548c44a3430699443f7e4405">&#9670;&#160;</a></span>disk_read()</h2>
+<a id="adadc0a7e67075fa88b19414584f07c9a" name="adadc0a7e67075fa88b19414584f07c9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adadc0a7e67075fa88b19414584f07c9a">&#9670;&#160;</a></span>disk_read()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;size_t sectorCount, size_t sectorSize = FF_MAX_SS&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">DRESULT fatfs::RamIO::disk_read </td>
+          <td class="memname">DRESULT <a class="el" href="classfatfs_1_1RamIO.html">fatfs::RamIO</a>&lt; sectorCount, sectorSize &gt;::disk_read </td>
           <td>(</td>
           <td class="paramtype">BYTE&#160;</td>
           <td class="paramname"><em>pdrv</em>, </td>
@@ -262,7 +267,7 @@ uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>work_buffer</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">UINT&#160;</td>
-          <td class="paramname"><em>sectorCount</em>&#160;</td>
+          <td class="paramname"><em>nSectors</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -281,17 +286,19 @@ uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>work_buffer</b> 
 
 </div>
 </div>
-<a id="a07e302beda551ce6b813d960186fe167" name="a07e302beda551ce6b813d960186fe167"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07e302beda551ce6b813d960186fe167">&#9670;&#160;</a></span>disk_status()</h2>
+<a id="a6c60cf17169bb297dd5bb7de7940bd5d" name="a6c60cf17169bb297dd5bb7de7940bd5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c60cf17169bb297dd5bb7de7940bd5d">&#9670;&#160;</a></span>disk_status()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;size_t sectorCount, size_t sectorSize = FF_MAX_SS&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">DSTATUS fatfs::RamIO::disk_status </td>
+          <td class="memname">DSTATUS <a class="el" href="classfatfs_1_1RamIO.html">fatfs::RamIO</a>&lt; sectorCount, sectorSize &gt;::disk_status </td>
           <td>(</td>
           <td class="paramtype">BYTE&#160;</td>
           <td class="paramname"><em>pdrv</em></td><td>)</td>
@@ -309,17 +316,19 @@ uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>work_buffer</b> 
 
 </div>
 </div>
-<a id="ac7f381cf84a3249170e5729cbe23928a" name="ac7f381cf84a3249170e5729cbe23928a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7f381cf84a3249170e5729cbe23928a">&#9670;&#160;</a></span>disk_write()</h2>
+<a id="a7f86b7d03a4b5d289ed9f1297ad5beb9" name="a7f86b7d03a4b5d289ed9f1297ad5beb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f86b7d03a4b5d289ed9f1297ad5beb9">&#9670;&#160;</a></span>disk_write()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;size_t sectorCount, size_t sectorSize = FF_MAX_SS&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">DRESULT fatfs::RamIO::disk_write </td>
+          <td class="memname">DRESULT <a class="el" href="classfatfs_1_1RamIO.html">fatfs::RamIO</a>&lt; sectorCount, sectorSize &gt;::disk_write </td>
           <td>(</td>
           <td class="paramtype">BYTE&#160;</td>
           <td class="paramname"><em>pdrv</em>, </td>
@@ -340,7 +349,7 @@ uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>work_buffer</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">UINT&#160;</td>
-          <td class="paramname"><em>sectorCount</em>&#160;</td>
+          <td class="paramname"><em>nSectors</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -359,17 +368,19 @@ uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>work_buffer</b> 
 
 </div>
 </div>
-<a id="a111f1532db81544176c41c4e56861ce7" name="a111f1532db81544176c41c4e56861ce7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a111f1532db81544176c41c4e56861ce7">&#9670;&#160;</a></span>mount()</h2>
+<a id="a7b80bfc3cced05486edbc5dabbfefe37" name="a7b80bfc3cced05486edbc5dabbfefe37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b80bfc3cced05486edbc5dabbfefe37">&#9670;&#160;</a></span>mount()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;size_t sectorCount, size_t sectorSize = FF_MAX_SS&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">FRESULT fatfs::RamIO::mount </td>
+          <td class="memname">virtual FRESULT <a class="el" href="classfatfs_1_1RamIO.html">fatfs::RamIO</a>&lt; sectorCount, sectorSize &gt;::mount </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classfatfs_1_1FatFs.html">FatFs</a> &amp;&#160;</td>
           <td class="paramname"><em>fs</em>, </td>
@@ -378,7 +389,7 @@ uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>work_buffer</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">BYTE&#160;</td>
-          <td class="paramname"><em>pdrv</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>ldrv</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -395,12 +406,12 @@ uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>work_buffer</b> 
 
 <p>mount the file system at the given logical drive number (0..FF_VOLUMES-1) - implementation at end of header to avoid recursive include </p>
 
-<p>Reimplemented from <a class="el" href="classfatfs_1_1IO.html#a0917f44023aba90becc2fdd8f6a0a4ec">fatfs::IO</a>.</p>
+<p>Reimplemented from <a class="el" href="classfatfs_1_1IO.html#af38a1c37ad9e3a5214ac8263dda7ca99">fatfs::IO</a>.</p>
 
 </div>
 </div>
-<a id="a15d3b5c681c36305058ac5c2e24590ab" name="a15d3b5c681c36305058ac5c2e24590ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15d3b5c681c36305058ac5c2e24590ab">&#9670;&#160;</a></span>un_mount()</h2>
+<a id="a73839aa5e7b6a74088cb94adac25de3c" name="a73839aa5e7b6a74088cb94adac25de3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73839aa5e7b6a74088cb94adac25de3c">&#9670;&#160;</a></span>un_mount()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -418,7 +429,7 @@ uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>work_buffer</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">BYTE&#160;</td>
-          <td class="paramname"><em>pdrv</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>ldrv</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -435,7 +446,7 @@ uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>work_buffer</b> 
 
 <p>unmount the file system at the given logical drive number - implementation at end of header to avoid recursive include </p>
 
-<p>Reimplemented in <a class="el" href="classfatfs_1_1MultiIO.html#a65f2f5d7d0e968b8f8003823f5f193b3">fatfs::MultiIO</a>.</p>
+<p>Reimplemented in <a class="el" href="classfatfs_1_1MultiIO.html#a31f01f8c4f2fa67eba984938779c70ed">fatfs::MultiIO</a>.</p>
 
 </div>
 </div>

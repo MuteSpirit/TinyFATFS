@@ -1,19 +1,19 @@
 <map id="fatfs::IO" name="fatfs::IO">
-<area shape="rect" id="Node000001" title="FatFS interface definition." alt="" coords="423,5,497,31"/>
-<area shape="rect" id="Node000002" href="$classfatfs_1_1BaseIO.html" title="Empty IO implementation that we can use to test the compilation." alt="" coords="212,79,319,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="417,38,298,81,296,76,415,33"/>
-<area shape="rect" id="Node000007" href="$classfatfs_1_1MultiIO.html" title="File system driver which supports multiple drives: Add the drivers by calling add() then call mount()..." alt="" coords="343,79,449,104"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="442,43,408,80,404,77,438,39"/>
-<area shape="rect" id="Node000008" href="$classfatfs_1_1RamIO.html" title="The data is stored in RAM. In a ESP32 when PSRAM has been activated we store it is PSRAM." alt="" coords="473,79,577,104"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="482,39,517,77,513,80,478,43"/>
-<area shape="rect" id="Node000009" href="$classfatfs_1_1StreamIO.html" title="template class which expects a Stream class which provides the following methods" alt="" coords="602,79,761,104"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="509,32,646,76,645,81,508,37"/>
-<area shape="rect" id="Node000003" href="$classfatfs_1_1ArduinoSpiIO.html" title="Accessing a SD card via the Arduino SPI API." alt="" coords="16,152,160,177"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="225,112,118,154,116,149,223,107"/>
-<area shape="rect" id="Node000005" href="$classfatfs_1_1Esp32SdmmcIO.html" title="Accessing an SD card via the ESP32 SDMMC interface using low&#45;level API." alt="" coords="184,152,347,177"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="268,118,268,152,263,152,263,118"/>
-<area shape="rect" id="Node000006" href="$classfatfs_1_1NBDClientIO.html" title="Uses an NBD export as a FatFs disk." alt="" coords="371,152,512,177"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="307,107,414,149,412,154,305,112"/>
-<area shape="rect" id="Node000004" href="$classfatfs_1_1ArduinoSpiExtIO.html" title="Accessing a SD card via the Arduino SPI API: The CS pin is handled via a GPIO class that provides pin..." alt="" coords="5,225,171,265"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="91,191,91,225,85,225,85,191"/>
+<area shape="rect" id="Node000001" title="FatFS interface definition." alt="" coords="5,141,76,166"/>
+<area shape="rect" id="Node000002" href="$classfatfs_1_1BaseIO.html" title="Empty IO implementation that we can use to test the compilation." alt="" coords="167,62,267,87"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,130,123,96,166,82,167,87,125,101,70,134"/>
+<area shape="rect" id="Node000007" href="$classfatfs_1_1MultiIO.html" title="File system driver which supports multiple drives: Add the drivers by calling add() then call mount()..." alt="" coords="167,111,266,137"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="89,143,166,130,167,135,90,148"/>
+<area shape="rect" id="Node000008" href="$classfatfs_1_1RamIO.html" title="The data is stored in RAM. On an ESP32 or RP2350 when PSRAM has been activated we store it in PSRAM." alt="" coords="124,161,309,201"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="90,158,124,164,124,169,89,164"/>
+<area shape="rect" id="Node000009" href="$classfatfs_1_1StreamIO.html" title="template class which expects a Stream class which provides the following methods" alt="" coords="145,226,289,251"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="68,173,95,193,125,211,158,223,156,228,123,216,92,197,65,177"/>
+<area shape="rect" id="Node000003" href="$classfatfs_1_1ArduinoSpiIO.html" title="Accessing a SD card via the Arduino SPI API." alt="" coords="367,13,500,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="280,58,376,35,377,41,281,63"/>
+<area shape="rect" id="Node000005" href="$classfatfs_1_1Esp32SdmmcIO.html" title="Accessing an SD card via the ESP32 SDMMC interface using low&#45;level API." alt="" coords="357,62,509,87"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="281,72,357,72,357,77,281,77"/>
+<area shape="rect" id="Node000006" href="$classfatfs_1_1NBDClientIO.html" title="Uses an NBD export as a FatFs disk." alt="" coords="367,111,500,137"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="281,86,377,109,376,114,280,92"/>
+<area shape="rect" id="Node000004" href="$classfatfs_1_1ArduinoSpiExtIO.html" title="Accessing a SD card via the Arduino SPI API: The CS pin is handled via a GPIO class that provides pin..." alt="" coords="557,5,711,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="514,23,557,23,557,28,514,28"/>
 </map>

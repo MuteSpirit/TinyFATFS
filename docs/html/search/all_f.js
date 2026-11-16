@@ -9,5 +9,6 @@ var searchData=
   ['setspi_6',['setspi',['../classfatfs_1_1ArduinoSpiIO.html#aa157099b2df8be2e0b14c6c3d8a4ec2e',1,'fatfs::ArduinoSpiIO::setSPI(SPIClass &amp;spi=SPI, uint32_t speedHz=FF_SPI_SPEED_FAST)'],['../classfatfs_1_1ArduinoSpiIO.html#a414a1ab646cc3635e6670a63f01b3e44',1,'fatfs::ArduinoSpiIO::setSPI(int cs=-1, SPIClass &amp;spi=SPI, uint32_t speedHz=FF_SPI_SPEED_FAST)'],['../classfatfs_1_1ArduinoSpiExtIO.html#aa157099b2df8be2e0b14c6c3d8a4ec2e',1,'fatfs::ArduinoSpiExtIO::setSPI(SPIClass &amp;spi=SPI, uint32_t speedHz=FF_SPI_SPEED_FAST)'],['../classfatfs_1_1ArduinoSpiExtIO.html#a414a1ab646cc3635e6670a63f01b3e44',1,'fatfs::ArduinoSpiExtIO::setSPI(int cs=-1, SPIClass &amp;spi=SPI, uint32_t speedHz=FF_SPI_SPEED_FAST)']]],
   ['slot_5fconfig_7',['slot_config',['../classfatfs_1_1Esp32SdmmcIO.html#ab626b0dbca5b8b8222da71dd4070be84',1,'fatfs::Esp32SdmmcIO']]],
   ['stat_8',['stat',['../classfatfs_1_1Esp32SdmmcIO.html#aa1c73e9990d84af4fe38daf68812f649',1,'fatfs::Esp32SdmmcIO']]],
-  ['streamio_9',['StreamIO',['../classfatfs_1_1StreamIO.html',1,'fatfs']]]
+  ['stl_9',['With STL',['../index.html#autotoc_md6',1,'']]],
+  ['streamio_10',['StreamIO',['../classfatfs_1_1StreamIO.html',1,'fatfs']]]
 ];

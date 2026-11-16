@@ -141,12 +141,12 @@ Public Member Functions</h2></td></tr>
 nbd::NBDClient &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getClient</b> ()</td></tr>
 <tr class="memdesc:a4c314c46ba6ff3658caf9359281bf934"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client used by this driver. <br /></td></tr>
 <tr class="separator:a4c314c46ba6ff3658caf9359281bf934"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0917f44023aba90becc2fdd8f6a0a4ec" id="r_a0917f44023aba90becc2fdd8f6a0a4ec"><td class="memItemLeft" align="right" valign="top">virtual FRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1IO.html#a0917f44023aba90becc2fdd8f6a0a4ec">mount</a> (<a class="el" href="classfatfs_1_1FatFs.html">FatFs</a> &amp;fs, BYTE pdrv=0)</td></tr>
-<tr class="memdesc:a0917f44023aba90becc2fdd8f6a0a4ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">mount the file system at the given logical drive number (0..FF_VOLUMES-1) - implementation at end of header to avoid recursive include  <br /></td></tr>
-<tr class="separator:a0917f44023aba90becc2fdd8f6a0a4ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15d3b5c681c36305058ac5c2e24590ab" id="r_a15d3b5c681c36305058ac5c2e24590ab"><td class="memItemLeft" align="right" valign="top">virtual FRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1IO.html#a15d3b5c681c36305058ac5c2e24590ab">un_mount</a> (<a class="el" href="classfatfs_1_1FatFs.html">FatFs</a> &amp;fs, BYTE pdrv=0)</td></tr>
-<tr class="memdesc:a15d3b5c681c36305058ac5c2e24590ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">unmount the file system at the given logical drive number - implementation at end of header to avoid recursive include  <br /></td></tr>
-<tr class="separator:a15d3b5c681c36305058ac5c2e24590ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af38a1c37ad9e3a5214ac8263dda7ca99" id="r_af38a1c37ad9e3a5214ac8263dda7ca99"><td class="memItemLeft" align="right" valign="top">virtual FRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1IO.html#af38a1c37ad9e3a5214ac8263dda7ca99">mount</a> (<a class="el" href="classfatfs_1_1FatFs.html">FatFs</a> &amp;fs, BYTE ldrv=0)</td></tr>
+<tr class="memdesc:af38a1c37ad9e3a5214ac8263dda7ca99"><td class="mdescLeft">&#160;</td><td class="mdescRight">mount the file system at the given logical drive number (0..FF_VOLUMES-1) - implementation at end of header to avoid recursive include  <br /></td></tr>
+<tr class="separator:af38a1c37ad9e3a5214ac8263dda7ca99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73839aa5e7b6a74088cb94adac25de3c" id="r_a73839aa5e7b6a74088cb94adac25de3c"><td class="memItemLeft" align="right" valign="top">virtual FRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1IO.html#a73839aa5e7b6a74088cb94adac25de3c">un_mount</a> (<a class="el" href="classfatfs_1_1FatFs.html">FatFs</a> &amp;fs, BYTE ldrv=0)</td></tr>
+<tr class="memdesc:a73839aa5e7b6a74088cb94adac25de3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">unmount the file system at the given logical drive number - implementation at end of header to avoid recursive include  <br /></td></tr>
+<tr class="separator:a73839aa5e7b6a74088cb94adac25de3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -509,8 +509,8 @@ volatile DSTATUS&#160;</td><td class="memItemRight" valign="bottom"><b>stat</b> 
 
 </div>
 </div>
-<a id="a0917f44023aba90becc2fdd8f6a0a4ec" name="a0917f44023aba90becc2fdd8f6a0a4ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0917f44023aba90becc2fdd8f6a0a4ec">&#9670;&#160;</a></span>mount()</h2>
+<a id="af38a1c37ad9e3a5214ac8263dda7ca99" name="af38a1c37ad9e3a5214ac8263dda7ca99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af38a1c37ad9e3a5214ac8263dda7ca99">&#9670;&#160;</a></span>mount()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -528,7 +528,7 @@ volatile DSTATUS&#160;</td><td class="memItemRight" valign="bottom"><b>stat</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">BYTE&#160;</td>
-          <td class="paramname"><em>pdrv</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>ldrv</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -545,12 +545,12 @@ volatile DSTATUS&#160;</td><td class="memItemRight" valign="bottom"><b>stat</b> 
 
 <p>mount the file system at the given logical drive number (0..FF_VOLUMES-1) - implementation at end of header to avoid recursive include </p>
 
-<p>Reimplemented in <a class="el" href="classfatfs_1_1MultiIO.html#a49d61683cf29c9a19347f9b737734020">fatfs::MultiIO</a>, and <a class="el" href="classfatfs_1_1RamIO.html#a111f1532db81544176c41c4e56861ce7">fatfs::RamIO</a>.</p>
+<p>Reimplemented in <a class="el" href="classfatfs_1_1RamIO.html#a7b80bfc3cced05486edbc5dabbfefe37">fatfs::RamIO&lt; sectorCount, sectorSize &gt;</a>, and <a class="el" href="classfatfs_1_1MultiIO.html#a8b5171053efcc43b2542172616fb7e2e">fatfs::MultiIO</a>.</p>
 
 </div>
 </div>
-<a id="a15d3b5c681c36305058ac5c2e24590ab" name="a15d3b5c681c36305058ac5c2e24590ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15d3b5c681c36305058ac5c2e24590ab">&#9670;&#160;</a></span>un_mount()</h2>
+<a id="a73839aa5e7b6a74088cb94adac25de3c" name="a73839aa5e7b6a74088cb94adac25de3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73839aa5e7b6a74088cb94adac25de3c">&#9670;&#160;</a></span>un_mount()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -568,7 +568,7 @@ volatile DSTATUS&#160;</td><td class="memItemRight" valign="bottom"><b>stat</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">BYTE&#160;</td>
-          <td class="paramname"><em>pdrv</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>ldrv</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -585,7 +585,7 @@ volatile DSTATUS&#160;</td><td class="memItemRight" valign="bottom"><b>stat</b> 
 
 <p>unmount the file system at the given logical drive number - implementation at end of header to avoid recursive include </p>
 
-<p>Reimplemented in <a class="el" href="classfatfs_1_1MultiIO.html#a65f2f5d7d0e968b8f8003823f5f193b3">fatfs::MultiIO</a>.</p>
+<p>Reimplemented in <a class="el" href="classfatfs_1_1MultiIO.html#a31f01f8c4f2fa67eba984938779c70ed">fatfs::MultiIO</a>.</p>
 
 </div>
 </div>

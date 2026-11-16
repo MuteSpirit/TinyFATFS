@@ -90,23 +90,23 @@ Inheritance diagram for fatfs::IO:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfatfs_1_1IO__inherit__graph.png" border="0" usemap="#afatfs_1_1IO_inherit__map" alt="Inheritance graph"/></div>
 <map name="afatfs_1_1IO_inherit__map" id="afatfs_1_1IO_inherit__map">
-<area shape="rect" title="FatFS interface definition." alt="" coords="423,5,497,31"/>
-<area shape="rect" href="classfatfs_1_1BaseIO.html" title="Empty IO implementation that we can use to test the compilation." alt="" coords="212,79,319,104"/>
-<area shape="poly" title=" " alt="" coords="417,38,298,81,296,76,415,33"/>
-<area shape="rect" href="classfatfs_1_1MultiIO.html" title="File system driver which supports multiple drives: Add the drivers by calling add() then call mount()..." alt="" coords="343,79,449,104"/>
-<area shape="poly" title=" " alt="" coords="442,43,408,80,404,77,438,39"/>
-<area shape="rect" href="classfatfs_1_1RamIO.html" title="The data is stored in RAM. In a ESP32 when PSRAM has been activated we store it is PSRAM." alt="" coords="473,79,577,104"/>
-<area shape="poly" title=" " alt="" coords="482,39,517,77,513,80,478,43"/>
-<area shape="rect" href="classfatfs_1_1StreamIO.html" title="template class which expects a Stream class which provides the following methods" alt="" coords="602,79,761,104"/>
-<area shape="poly" title=" " alt="" coords="509,32,646,76,645,81,508,37"/>
-<area shape="rect" href="classfatfs_1_1ArduinoSpiIO.html" title="Accessing a SD card via the Arduino SPI API." alt="" coords="16,152,160,177"/>
-<area shape="poly" title=" " alt="" coords="225,112,118,154,116,149,223,107"/>
-<area shape="rect" href="classfatfs_1_1Esp32SdmmcIO.html" title="Accessing an SD card via the ESP32 SDMMC interface using low&#45;level API." alt="" coords="184,152,347,177"/>
-<area shape="poly" title=" " alt="" coords="268,118,268,152,263,152,263,118"/>
-<area shape="rect" href="classfatfs_1_1NBDClientIO.html" title="Uses an NBD export as a FatFs disk." alt="" coords="371,152,512,177"/>
-<area shape="poly" title=" " alt="" coords="307,107,414,149,412,154,305,112"/>
-<area shape="rect" href="classfatfs_1_1ArduinoSpiExtIO.html" title="Accessing a SD card via the Arduino SPI API: The CS pin is handled via a GPIO class that provides pin..." alt="" coords="5,225,171,265"/>
-<area shape="poly" title=" " alt="" coords="91,191,91,225,85,225,85,191"/>
+<area shape="rect" title="FatFS interface definition." alt="" coords="5,141,76,166"/>
+<area shape="rect" href="classfatfs_1_1BaseIO.html" title="Empty IO implementation that we can use to test the compilation." alt="" coords="167,62,267,87"/>
+<area shape="poly" title=" " alt="" coords="67,130,123,96,166,82,167,87,125,101,70,134"/>
+<area shape="rect" href="classfatfs_1_1MultiIO.html" title="File system driver which supports multiple drives: Add the drivers by calling add() then call mount()..." alt="" coords="167,111,266,137"/>
+<area shape="poly" title=" " alt="" coords="89,143,166,130,167,135,90,148"/>
+<area shape="rect" href="classfatfs_1_1RamIO.html" title="The data is stored in RAM. On an ESP32 or RP2350 when PSRAM has been activated we store it in PSRAM." alt="" coords="124,161,309,201"/>
+<area shape="poly" title=" " alt="" coords="90,158,124,164,124,169,89,164"/>
+<area shape="rect" href="classfatfs_1_1StreamIO.html" title="template class which expects a Stream class which provides the following methods" alt="" coords="145,226,289,251"/>
+<area shape="poly" title=" " alt="" coords="68,173,95,193,125,211,158,223,156,228,123,216,92,197,65,177"/>
+<area shape="rect" href="classfatfs_1_1ArduinoSpiIO.html" title="Accessing a SD card via the Arduino SPI API." alt="" coords="367,13,500,38"/>
+<area shape="poly" title=" " alt="" coords="280,58,376,35,377,41,281,63"/>
+<area shape="rect" href="classfatfs_1_1Esp32SdmmcIO.html" title="Accessing an SD card via the ESP32 SDMMC interface using low&#45;level API." alt="" coords="357,62,509,87"/>
+<area shape="poly" title=" " alt="" coords="281,72,357,72,357,77,281,77"/>
+<area shape="rect" href="classfatfs_1_1NBDClientIO.html" title="Uses an NBD export as a FatFs disk." alt="" coords="367,111,500,137"/>
+<area shape="poly" title=" " alt="" coords="281,86,377,109,376,114,280,92"/>
+<area shape="rect" href="classfatfs_1_1ArduinoSpiExtIO.html" title="Accessing a SD card via the Arduino SPI API: The CS pin is handled via a GPIO class that provides pin..." alt="" coords="557,5,711,45"/>
+<area shape="poly" title=" " alt="" coords="514,23,557,23,557,28,514,28"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -122,12 +122,12 @@ Collaboration diagram for fatfs::IO:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0917f44023aba90becc2fdd8f6a0a4ec" id="r_a0917f44023aba90becc2fdd8f6a0a4ec"><td class="memItemLeft" align="right" valign="top">virtual FRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1IO.html#a0917f44023aba90becc2fdd8f6a0a4ec">mount</a> (<a class="el" href="classfatfs_1_1FatFs.html">FatFs</a> &amp;fs, BYTE pdrv=0)</td></tr>
-<tr class="memdesc:a0917f44023aba90becc2fdd8f6a0a4ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">mount the file system at the given logical drive number (0..FF_VOLUMES-1) - implementation at end of header to avoid recursive include  <br /></td></tr>
-<tr class="separator:a0917f44023aba90becc2fdd8f6a0a4ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15d3b5c681c36305058ac5c2e24590ab" id="r_a15d3b5c681c36305058ac5c2e24590ab"><td class="memItemLeft" align="right" valign="top">virtual FRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1IO.html#a15d3b5c681c36305058ac5c2e24590ab">un_mount</a> (<a class="el" href="classfatfs_1_1FatFs.html">FatFs</a> &amp;fs, BYTE pdrv=0)</td></tr>
-<tr class="memdesc:a15d3b5c681c36305058ac5c2e24590ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">unmount the file system at the given logical drive number - implementation at end of header to avoid recursive include  <br /></td></tr>
-<tr class="separator:a15d3b5c681c36305058ac5c2e24590ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af38a1c37ad9e3a5214ac8263dda7ca99" id="r_af38a1c37ad9e3a5214ac8263dda7ca99"><td class="memItemLeft" align="right" valign="top">virtual FRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1IO.html#af38a1c37ad9e3a5214ac8263dda7ca99">mount</a> (<a class="el" href="classfatfs_1_1FatFs.html">FatFs</a> &amp;fs, BYTE ldrv=0)</td></tr>
+<tr class="memdesc:af38a1c37ad9e3a5214ac8263dda7ca99"><td class="mdescLeft">&#160;</td><td class="mdescRight">mount the file system at the given logical drive number (0..FF_VOLUMES-1) - implementation at end of header to avoid recursive include  <br /></td></tr>
+<tr class="separator:af38a1c37ad9e3a5214ac8263dda7ca99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73839aa5e7b6a74088cb94adac25de3c" id="r_a73839aa5e7b6a74088cb94adac25de3c"><td class="memItemLeft" align="right" valign="top">virtual FRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1IO.html#a73839aa5e7b6a74088cb94adac25de3c">un_mount</a> (<a class="el" href="classfatfs_1_1FatFs.html">FatFs</a> &amp;fs, BYTE ldrv=0)</td></tr>
+<tr class="memdesc:a73839aa5e7b6a74088cb94adac25de3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">unmount the file system at the given logical drive number - implementation at end of header to avoid recursive include  <br /></td></tr>
+<tr class="separator:a73839aa5e7b6a74088cb94adac25de3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30df992369bb307901b4c6268ff9c079" id="r_a30df992369bb307901b4c6268ff9c079"><td class="memItemLeft" align="right" valign="top">virtual DSTATUS&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1IO.html#a30df992369bb307901b4c6268ff9c079">disk_initialize</a> (BYTE pdrv)=0</td></tr>
 <tr class="separator:a30df992369bb307901b4c6268ff9c079"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7af652fff840de80154eb861f28ecacd" id="r_a7af652fff840de80154eb861f28ecacd"><td class="memItemLeft" align="right" valign="top">virtual DSTATUS&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfatfs_1_1IO.html#a7af652fff840de80154eb861f28ecacd">disk_status</a> (BYTE pdrv)=0</td></tr>
@@ -349,8 +349,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a0917f44023aba90becc2fdd8f6a0a4ec" name="a0917f44023aba90becc2fdd8f6a0a4ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0917f44023aba90becc2fdd8f6a0a4ec">&#9670;&#160;</a></span>mount()</h2>
+<a id="af38a1c37ad9e3a5214ac8263dda7ca99" name="af38a1c37ad9e3a5214ac8263dda7ca99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af38a1c37ad9e3a5214ac8263dda7ca99">&#9670;&#160;</a></span>mount()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -368,7 +368,7 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">BYTE&#160;</td>
-          <td class="paramname"><em>pdrv</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>ldrv</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -385,12 +385,12 @@ Public Attributes</h2></td></tr>
 
 <p>mount the file system at the given logical drive number (0..FF_VOLUMES-1) - implementation at end of header to avoid recursive include </p>
 
-<p>Reimplemented in <a class="el" href="classfatfs_1_1MultiIO.html#a49d61683cf29c9a19347f9b737734020">fatfs::MultiIO</a>, and <a class="el" href="classfatfs_1_1RamIO.html#a111f1532db81544176c41c4e56861ce7">fatfs::RamIO</a>.</p>
+<p>Reimplemented in <a class="el" href="classfatfs_1_1RamIO.html#a7b80bfc3cced05486edbc5dabbfefe37">fatfs::RamIO&lt; sectorCount, sectorSize &gt;</a>, and <a class="el" href="classfatfs_1_1MultiIO.html#a8b5171053efcc43b2542172616fb7e2e">fatfs::MultiIO</a>.</p>
 
 </div>
 </div>
-<a id="a15d3b5c681c36305058ac5c2e24590ab" name="a15d3b5c681c36305058ac5c2e24590ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15d3b5c681c36305058ac5c2e24590ab">&#9670;&#160;</a></span>un_mount()</h2>
+<a id="a73839aa5e7b6a74088cb94adac25de3c" name="a73839aa5e7b6a74088cb94adac25de3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73839aa5e7b6a74088cb94adac25de3c">&#9670;&#160;</a></span>un_mount()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -408,7 +408,7 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">BYTE&#160;</td>
-          <td class="paramname"><em>pdrv</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>ldrv</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -425,7 +425,7 @@ Public Attributes</h2></td></tr>
 
 <p>unmount the file system at the given logical drive number - implementation at end of header to avoid recursive include </p>
 
-<p>Reimplemented in <a class="el" href="classfatfs_1_1MultiIO.html#a65f2f5d7d0e968b8f8003823f5f193b3">fatfs::MultiIO</a>.</p>
+<p>Reimplemented in <a class="el" href="classfatfs_1_1MultiIO.html#a31f01f8c4f2fa67eba984938779c70ed">fatfs::MultiIO</a>.</p>
 
 </div>
 </div>
