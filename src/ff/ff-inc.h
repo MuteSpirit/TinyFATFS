@@ -23,11 +23,9 @@
 / by use of this software.
 /
 /----------------------------------------------------------------------------*/
-// #pragma once // IVANE
-
 #include "ff.h"			/* Declarations of FatFs API */
 #include "ffconf.h"
-#include "../driver/IO.h" // IVANE
+#include "../driver/IO.h"
 
 /*--------------------------------------------------------------------------
 

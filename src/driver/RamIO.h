@@ -144,13 +144,13 @@ class RamIO : public IO {
     return res;
   }
 
-  virtual FRESULT mount(FatFs& fs, BYTE pdrv) override
+  virtual FRESULT mount(FatFs& fs, BYTE ldrv) override
   {
       memset(work_buffer, 0, sizeof(work_buffer));
 
       // the file system is empty so we need to format it
       char path[6] = {0};
-      snprintf(path, sizeof(path), "%d:", pdrv);
+      snprintf(path, sizeof(path), "%d:", ldrv);
       FRESULT rc = fs.f_mkfs(path, nullptr, work_buffer, sizeof(work_buffer));
       if (FR_OK != rc) {
         return rc;

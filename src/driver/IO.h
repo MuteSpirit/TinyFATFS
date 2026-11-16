@@ -16,7 +16,7 @@ namespace fatfs {
 class FatFs;  // forward declaration
 
 
-/// Status of Disk Functions 
+/// Status of Disk Functions
 enum DSTATUS {
  STA_CLEAR=0X00,
  STA_NOINIT=0x01,  /*!<  Drive not initialized */
@@ -24,7 +24,7 @@ enum DSTATUS {
  STA_PROTECT=0x04  /*!<  Write protected */
 };
 
-/// Results of Disk Functions 
+/// Results of Disk Functions
 enum DRESULT {
   RES_OK = 0, /*!< 0: Successful */
   RES_ERROR,  /*!< 1: R/W Error */
@@ -75,9 +75,9 @@ enum ioctl_cmd_t {
 class IO {
  public:
   /// mount the file system at the given logical drive number (0..FF_VOLUMES-1) - implementation at end of header to avoid recursive include
-  virtual FRESULT mount(FatFs& fs, BYTE pdrv = 0);
+  virtual FRESULT mount(FatFs& fs, BYTE ldrv = 0);
   /// unmount the file system at the given logical drive number - implementation at end of header to avoid recursive include
-  virtual FRESULT un_mount(FatFs& fs, BYTE pdrv = 0);
+  virtual FRESULT un_mount(FatFs& fs, BYTE ldrv = 0);
 
   virtual DSTATUS disk_initialize(BYTE pdrv) = 0;
   virtual DSTATUS disk_status(BYTE pdrv) = 0;
@@ -99,14 +99,14 @@ class IO {
 namespace fatfs {
 
 // Inline implementations (moved from IO.cpp)
-inline FRESULT IO::mount(FatFs& fs, BYTE pdrv) {
+inline FRESULT IO::mount(FatFs& fs, BYTE ldrv) {
   char path[6];
-  snprintf(path, sizeof(path), "%d:", pdrv);
+  snprintf(path, sizeof(path), "%d:", ldrv);
   return fs.f_mount(&fatfs, path, 0);
 }
-inline FRESULT IO::un_mount(FatFs& fs, BYTE pdrv) {
+inline FRESULT IO::un_mount(FatFs& fs, BYTE ldrv) {
   char path[6];
-  snprintf(path, sizeof(path), "%d:", pdrv);
+  snprintf(path, sizeof(path), "%d:", ldrv);
   return fs.f_unmount(path);
 }
 

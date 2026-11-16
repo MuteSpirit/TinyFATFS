@@ -26,6 +26,7 @@ class MultiIO : public IO {
 
   /// mount all the added drivers, each on its own logical drive number
   /// matching its index (requires FF_VOLUMES >= io_vector.size())
+  /// TODO: investigate why mount is being called only once by SDClass
   FRESULT mount(FatFs& fs, BYTE ldrv = 0) override {
       FRESULT rc = FR_OK;
       for (size_t i = 0, e = io_vector.size(); i < e; ++i) {
