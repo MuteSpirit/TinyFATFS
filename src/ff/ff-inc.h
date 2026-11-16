@@ -453,6 +453,9 @@ void modify_mbr(
  	struct MbrInfo& info	/* Receives the status and the partition table */
  )
  {
+        /* Check the MBR signature at offset BS_55AA */
+        info.isMbr_ = (ld_word(mbr + BS_55AA) == 0xAA55);
+
         /* Load the partition table entries */
  	for (UINT i = 0; i < ARRAY_LEN(info.part); ++i) {
             info.part[i] = ld_dword(mbr + MBR_Table + i * SZ_PTE + PTE_StLba);

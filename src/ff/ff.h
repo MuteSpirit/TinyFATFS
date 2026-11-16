@@ -29,6 +29,8 @@ namespace fatfs {
 struct MbrInfo {
   ///< Partition start LBA (0:unused entry). Only primary partitions are supported.
   LBA_t part[4];
+  ///< True if the sector carries the MBR signature 0xAA55 at offset BS_55AA.
+  bool isMbr_ {false};
 };
 
 /// @brief Parse MBR table in sector 0 bytes
