@@ -3231,14 +3231,19 @@ static DWORD make_rand (
 
  UINT FatFs::find_volume (	/* Returns BS status found in the hosting drive */
 	FATFS* fs,		/* Filesystem object */
-	UINT part		/* Partition to fined = 0:auto, 1..:forced */
+	UINT part		/* Partition to find = 0:auto, 1..:forced */
 )
 {
-	UINT fmt, i;
-	DWORD mbr_pt[4];
+	UINT fmt = 0, i = 0;
+	DWORD mbr_pt[4] = {0};
 
+	/* Load sector 0 and check if it is an FAT VBR as SFD */
+	fmt = check_fs(fs, 0);
+	/* if physical drive sector 0 contains FAT or exFAT header then MBR is absent
+	 * there and nothing to parse by code below
+	 */
+	if (fmt < 2) return fmt;
 
-	fmt = check_fs(fs, 0);				/* Load sector 0 and check if it is an FAT VBR as SFD */
 	if (fmt != 2 && (fmt >= 3 || part == 0)) return fmt;	/* Returns if it is a FAT VBR as auto scan, not a BS or disk error */
 
 	/* Sector 0 is not an FAT VBR or forced partition number wants a partition */
@@ -3269,9 +3274,15 @@ static DWORD make_rand (
 	for (i = 0; i < 4; i++) {		/* Load partition offset in the MBR */
 		mbr_pt[i] = ld_dword(fs->win + MBR_Table + i * SZ_PTE + PTE_StLba);
 	}
-	i = part ? part - 1 : 0;		/* Table index to find first */
-	do {							/* Find an FAT volume */
-		fmt = mbr_pt[i] ? check_fs(fs, mbr_pt[i]) : 3;	/* Check if the partition is FAT */
+
+	i = part ? part - 1 : 0; /* Table index to find first */
+	do {/* Find an FAT volume */
+		if (mbr_pt[i]) {
+			fs->volbase = mbr_pt[i]; /* Set volbase here to avoid loss this info for non-FAT partitions */
+			fmt = check_fs(fs, mbr_pt[i]);	/* Check if the partition is FAT */
+		} else {
+			fmt = 3;
+		}
 	} while (part == 0 && fmt >= 2 && ++i < 4);
 	return fmt;
 }
