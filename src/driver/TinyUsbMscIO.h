@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: MIT
 #pragma once
 
+#ifndef FATFS_TinyUsbMscIO_H
+#define FATFS_TinyUsbMscIO_H
+
 #if defined(USE_TINYUSB)
 
 #include "IO.h"
@@ -104,4 +107,5 @@ class TinyUsbMscIO {
 
 }  // namespace fatfs
 
-#endif  // USE_TINYUSB
+#endif // USE_TINYUSB
+#endif // FATFS_TinyUsbMscIO_H

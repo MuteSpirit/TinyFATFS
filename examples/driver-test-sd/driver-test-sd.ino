@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "fatfs.h"
+#include <thread>
 
 // pins for audiokit
 #define MISO 2
@@ -308,7 +309,7 @@ void setup() {
   #ifdef ARDUINO
   delay(3000);
   #else
-  this_thread::sleep_for(chrono::milliseconds(3000));
+  std::this_thread::sleep_for(chrono::milliseconds(3000));
   #endif
   Serial.println("Disk I/O Test");
   int rc;

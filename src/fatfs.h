@@ -383,8 +383,12 @@ class SDClass {
 
   bool handleError(FRESULT rc) {
     if (rc != FR_OK) {
+#ifdef ARDUINO
       Serial.print("fatfs: error no: ");
       Serial.println((int)rc);
+#else
+      printf("fatfs: error no: %d", rc);
+#endif
       return false;
     }
     return true;

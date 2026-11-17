@@ -338,7 +338,6 @@
 #include <etl/string.h>
 #include <etl/vector.h>
 #include <etl/chrono.h>
-#include <thread>
 
 namespace fatfs {
 
@@ -346,10 +345,8 @@ namespace fatfs {
 using string = etl::string<FF_MAX_LFN>;
 
 /// Vector type: ETL fixed-capacity vector (replaces std::vector)
-template <typename T, size_t N>
+template <typename T, size_t N = 64>
 using vector = etl::vector<T, N>;
-
-using std::thread;
 
 } // namespace fatfs
 
@@ -357,14 +354,11 @@ using std::thread;
 
 #include <string>
 #include <vector>
-#include <thread>
 #include <chrono>
 
 namespace fatfs {
 
 using namespace std;
-
-using std::thread;
 
 } // namespace fatfs
 
